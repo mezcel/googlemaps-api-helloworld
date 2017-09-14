@@ -1,5 +1,5 @@
 var xhReq = new XMLHttpRequest();
-xhReq.open("GET", '../js/mywaypointarray.json', false);
+xhReq.open("GET", 'js/mywaypointarray.json', false);
 xhReq.send(null);
 var mywaypointarrayjsonObject = JSON.parse(xhReq.responseText);
 
