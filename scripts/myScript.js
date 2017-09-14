@@ -10,6 +10,7 @@ var locations = [
 ];
 
 locations = mywaypointarrayjsonObject;
+
 var geocoder;
 var map;
 var bounds = new google.maps.LatLngBounds();
