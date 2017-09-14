@@ -10,6 +10,8 @@ var bounds = new google.maps.LatLngBounds();
 function initialize() {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
+
+    
     map = new google.maps.Map(document.getElementById("map_canvas"), {
         center: new google.maps.LatLng(32.629283, -85.463560),
         /* regional center point initial view */
