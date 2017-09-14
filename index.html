@@ -2,19 +2,32 @@
 <html>
 <head>
     <title></title>
+    <link href='styles/w3.css' rel='stylesheet'>
 </head>
 <body>
-  <button onclick="chartCourse()">chartCourse()</button><br>
-  Start Point: <select id="selectpoint1">
-    <option>point A</option>
-  </select>
-  <br>End Point: <select id="selectpoint2">
-    <option>point B</option>
-  </select>
-    <div id="map_canvas" style="width:750px; height:450px; border: 2px solid #3872ac;"></div>
-    <script src='scripts/require.js'></script>
+    <div class="w3-container">
+        <button onclick="chartCourse()">chartCourse()</button>
+        <div>
+            <label class="w3-label" for="selectpoint1">Start Point:</label> <select id="selectpoint1">
+                <option>
+                    point A
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="selectpoint2">End Point:</label> <select id="selectpoint2">
+                <option>
+                    point B
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="w3-card w3-image" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
+    <script src='scripts/require.js'>
+    </script>
     <script src='scripts/googlemaps-geometry.js'>
     </script> <!-- <script src='https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js'></script> -->
+
     <script src='scripts/myScript.js'>
     </script> <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"> </script> -->
 </body>

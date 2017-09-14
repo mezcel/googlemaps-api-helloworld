@@ -3,12 +3,10 @@ var locations = [
     ['Dothan', '3702 Ross Clark Circle, Suite 3 Dothan, AL 36303', 'https://www.google.com'],
     ['Mobile', '3662 Dauphin Street, Suite B, Mobile, AL 36608', 'https://www.google.com']
 ];
-
 var originVar = "78 River COurt, Crawfordville FL 32327";
 var destinationVar = "3702 Ross Clark Circle, Suite 3 Dothan, AL 36303";
 //var mywaypointarrayjsonObject = require('scripts/mywaypointarrayjsonObject.json'); //with path
 //locations = mywaypointarrayjsonObject;
-
 var geocoder;
 var map;
 var bounds = new google.maps.LatLngBounds();
@@ -78,7 +76,6 @@ function createMarker(results) {
     infoWindow(marker, map, title, address, url);
     return marker;
 }
-
 /* Getting Directions */
 // https://developers.google.com/maps/documentation/javascript/examples/directions-simple
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -99,37 +96,35 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     });
 }
 
-function populateDropdownLists(){
-  var select1 = document.getElementById("selectpoint1");
-  var select2 = document.getElementById("selectpoint2");
-  var options = locations;
-  for(var i = 0; i < options.length; i++) {
-      var opt = options[i][1];
-      var el = document.createElement("option");
-      el.textContent = opt;
-      el.value = opt;
-      select1.appendChild(el);
-  }
-  for(var i = 0; i < options.length; i++) {
-      var opt = options[i][1];
-      var el = document.createElement("option");
-      el.textContent = opt;
-      el.value = opt;
-      select2.appendChild(el);
-  }
-
-  document.getElementById('selectpoint1').addEventListener('change', onChangeHandler);
-  document.getElementById('selectpoint2').addEventListener('change', onChangeHandler);
+function populateDropdownLists() {
+    var select1 = document.getElementById("selectpoint1");
+    var select2 = document.getElementById("selectpoint2");
+    var options = locations;
+    for (var i = 0; i < options.length; i++) {
+        var opt = options[i][1];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select1.appendChild(el);
+    }
+    for (var i = 0; i < options.length; i++) {
+        var opt = options[i][1];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select2.appendChild(el);
+    }
+    document.getElementById('selectpoint1').addEventListener('change', onChangeHandler);
+    document.getElementById('selectpoint2').addEventListener('change', onChangeHandler);
 }
 
-function chartCourse(){
-  var directionsService = new google.maps.DirectionsService;
-  var directionsDisplay = new google.maps.DirectionsRenderer;
-
-  directionsDisplay.setMap(map);
-  calculateAndDisplayRoute(directionsService, directionsDisplay);
-  //actionsDisplay.setMap(map);
+function chartCourse() {
+    google.maps.event.addDomListener(window, "load", initialize);
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setMap(map);
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+    //actionsDisplay.setMap(map);
 }
-
 google.maps.event.addDomListener(window, "load", initialize);
 populateDropdownLists();
