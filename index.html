@@ -2,26 +2,33 @@
 <html>
 <head>
     <title></title>
-    <link href='styles/w3.css' rel='stylesheet'>
+    <!--<link href='styles/w3.css' rel='stylesheet'>-->
 </head>
 <body>
-    <div class="w3-container">
-        <button onclick="chartCourse()">chartCourse()</button>
-        <div>
-            <label class="w3-label" for="selectpoint1">Start Point:</label> <select id="selectpoint1">
+    <div class = "w3-container"><div class = "w3-card">
+
+        <button class="w3-btn"onclick="chartCourse()">Display Rout</button>
+
+        <div class="w3-border">
+            <label class="w3-label" for="selectpoint1">Start Point:</label> <select id="selectpoint1" class="w3-select">
                 <option>
                     point A
                 </option>
             </select>
+            <input type="text" placeholder='start point address' class="w3-input"></input>
         </div>
-        <div>
-            <label for="selectpoint2">End Point:</label> <select id="selectpoint2">
+
+        <div class="w3-border">
+            <label class="w3-label" for="selectpoint2">Start Point:</label> <select id="selectpoint2" class="w3-select">
                 <option>
-                    point B
+                    point A
                 </option>
             </select>
+            <input type="text" placeholder='end point address' class="w3-input"></input>
         </div>
-    </div>
+
+    </div></div>
+
     <div class="w3-card w3-image" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
     <script src='scripts/require.js'>
     </script>
