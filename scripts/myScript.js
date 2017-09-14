@@ -4,8 +4,7 @@ var locations = [
     ['Mobile', '3662 Dauphin Street, Suite B, Mobile, AL 36608', '(251) 476-8210']
 ];
 
-var mywaypointarrayjsonObject = require('js/mywaypointarrayjsonObject.json'); //with path
-
+//var mywaypointarrayjsonObject = require('scripts/mywaypointarrayjsonObject.json'); //with path
 //locations = mywaypointarrayjsonObject;
 
 var geocoder;
