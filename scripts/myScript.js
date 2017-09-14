@@ -1,9 +1,11 @@
 var locations = [
-    ['Auburn', '2436 East University Drive, Suite 2203-04, Auburn, AL 36830', '(334) 246-3910', 32.629283, -85.463560, 1],
-    ['Dothan', '3702 Ross Clark Circle, Suite 3 Dothan, AL 36303', '(334) 671-1315'],
-    ['Mobile', '3662 Dauphin Street, Suite B, Mobile, AL 36608', '(251) 476-8210']
+    ['Auburn', '2436 East University Drive, Suite 2203-04, Auburn, AL 36830', 'https://www.google.com'],
+    ['Dothan', '3702 Ross Clark Circle, Suite 3 Dothan, AL 36303', 'https://www.google.com'],
+    ['Mobile', '3662 Dauphin Street, Suite B, Mobile, AL 36608', 'https://www.google.com']
 ];
 
+var originVar = "78 River COurt, Crawfordville FL 32327";
+var destinationVar = "3702 Ross Clark Circle, Suite 3 Dothan, AL 36303";
 //var mywaypointarrayjsonObject = require('scripts/mywaypointarrayjsonObject.json'); //with path
 //locations = mywaypointarrayjsonObject;
 
@@ -12,25 +14,17 @@ var map;
 var bounds = new google.maps.LatLngBounds();
 
 function initialize() {
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
-
-
     map = new google.maps.Map(document.getElementById("map_canvas"), {
         center: new google.maps.LatLng(32.629283, -85.463560),
         /* regional center point initial view */
-        zoom: 13,
+        zoom: 1,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     geocoder = new google.maps.Geocoder();
     for (i = 0; i < locations.length; i++) {
         geocodeAddress(locations, i);
     }
-    directionsDisplay.setMap(map);
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
-    ctionsDisplay.setMap(map);
 }
-google.maps.event.addDomListener(window, "load", initialize);
 
 function geocodeAddress(locations, i) {
     var title = locations[i][0];
@@ -84,12 +78,17 @@ function createMarker(results) {
     infoWindow(marker, map, title, address, url);
     return marker;
 }
-/* Detting Directions */
-//https://developers.google.com/maps/documentation/javascript/examples/directions-simple
+
+/* Getting Directions */
+// https://developers.google.com/maps/documentation/javascript/examples/directions-simple
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
-        origin: '78 River COurt, Crawfordville FL 32327',
-        destination: '3702 Ross Clark Circle, Suite 3 Dothan, AL 36303',
+        /*
+        origin: originVar,
+        destination: destinationVar,
+        */
+        origin: document.getElementById('selectpoint1').value,
+        destination: document.getElementById('selectpoint2').value,
         travelMode: 'DRIVING'
     }, function(response, status) {
         if (status === 'OK') {
@@ -99,3 +98,38 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         }
     });
 }
+
+function populateDropdownLists(){
+  var select1 = document.getElementById("selectpoint1");
+  var select2 = document.getElementById("selectpoint2");
+  var options = locations;
+  for(var i = 0; i < options.length; i++) {
+      var opt = options[i][1];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      select1.appendChild(el);
+  }
+  for(var i = 0; i < options.length; i++) {
+      var opt = options[i][1];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      select2.appendChild(el);
+  }
+
+  document.getElementById('selectpoint1').addEventListener('change', onChangeHandler);
+  document.getElementById('selectpoint2').addEventListener('change', onChangeHandler);
+}
+
+function chartCourse(){
+  var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+
+  directionsDisplay.setMap(map);
+  calculateAndDisplayRoute(directionsService, directionsDisplay);
+  //actionsDisplay.setMap(map);
+}
+
+google.maps.event.addDomListener(window, "load", initialize);
+populateDropdownLists();
