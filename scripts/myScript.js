@@ -1,10 +1,16 @@
+var locations;
+/*
 var locations = [
     ['Auburn', '2436 East University Drive, Suite 2203-04, Auburn, AL 36830', 'https://www.google.com'],
     ['Dothan', '3702 Ross Clark Circle, Suite 3 Dothan, AL 36303', 'https://www.google.com'],
     ['Mobile', '3662 Dauphin Street, Suite B, Mobile, AL 36608', 'https://www.google.com']
 ];
+*/
 var originVar = "78 River COurt, Crawfordville FL 32327";
 var destinationVar = "3702 Ross Clark Circle, Suite 3 Dothan, AL 36303";
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var csvWptArr;
+
 //var mywaypointarrayjsonObject = require('scripts/mywaypointarrayjsonObject.json'); //with path
 //locations = mywaypointarrayjsonObject;
 var geocoder;
@@ -33,14 +39,16 @@ function geocodeAddress(locations, i) {
     }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             var marker = new google.maps.Marker({
-                icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
+                icon: 'http://maps.google.com/mapfiles/ms/icons/purple.png',
                 map: map,
                 position: results[0].geometry.location,
                 title: title,
                 animation: google.maps.Animation.DROP,
                 address: address,
-                url: url
-            })
+                url: url,
+                label: labels[i % labels.length]
+            });
+
             infoWindow(marker, map, title, address, url);
             bounds.extend(marker.getPosition());
             map.fitBounds(bounds);
@@ -61,21 +69,6 @@ function infoWindow(marker, map, title, address, url) {
     });
 }
 
-function createMarker(results) {
-    var marker = new google.maps.Marker({
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png',
-        map: map,
-        position: results[0].geometry.location,
-        title: title,
-        animation: google.maps.Animation.DROP,
-        address: address,
-        url: url
-    })
-    bounds.extend(marker.getPosition());
-    map.fitBounds(bounds);
-    infoWindow(marker, map, title, address, url);
-    return marker;
-}
 /* Getting Directions */
 // https://developers.google.com/maps/documentation/javascript/examples/directions-simple
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -126,5 +119,7 @@ function chartCourse() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
     //actionsDisplay.setMap(map);
 }
-google.maps.event.addDomListener(window, "load", initialize);
-populateDropdownLists();
+
+function csv2googlepoints(){
+
+}
