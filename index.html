@@ -2,13 +2,13 @@
 <html>
 <head>
     <title></title>
-    <link href='styles/w3.css' rel='stylesheet'>
-    <!-- <script src="scripts/jquery-3.2.1.min.js">
+    <link href='styles/w3.css' rel='stylesheet'><!-- <script src="scripts/jquery-3.2.1.min.js">
     <script src="scripts/jquery.csv-0.71.min.js">-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js">
+    </script>
 </head>
 <body>
     <div class="fileupload" id="dvImportSegments">
@@ -16,41 +16,39 @@
             <legend>Upload your CSV Waypoints File</legend> <input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
         </fieldset>
     </div>
-
     <div class="w3-container">
         <div class="w3-card w3-center">
-<h3>Immediate Destination:</h3>
+            <h3>Immediate Destination:</h3>
             <div class="w3-row">
                 <div class="w3-half w3-container w3-lime">
                     <label>Start Point:</label> <select id="selectpoint1" style="width:50%">
                         <option>
                             point A
                         </option>
-                    </select>
-                    <input placeholder='start point address' type="text">
+                    </select> <input placeholder='start point address' type="text">
                 </div>
-            <div class="w3-half w3-container w3-pink">
-                <label>End Point:</label> <select id="selectpoint2" style="width:50%">
-                    <option>
-                        point B
-                    </option>
-                </select> <input placeholder='end point address' type="text">
+                <div class="w3-half w3-container w3-pink">
+                    <label>End Point:</label> <select id="selectpoint2" style="width:50%">
+                        <option>
+                            point B
+                        </option>
+                    </select> <input placeholder='end point address' type="text">
+                </div>
             </div>
+            <p><button class="w3-btn w3-round-xxlarge w3-orange" onclick="chartCourse()">Chart A Course</button></p>
+            <hr>
+            <p></p>
         </div>
-<p>
-        <button class="w3-btn w3-round-xxlarge w3-orange " onclick="chartCourse()">Chart A Course</button>
-        <hr>
-    </p>
+        <div class="w3-card w3-image" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div><!-- Scripts -->
+        <script src='scripts/require.js'>
+        </script>
+        <script src='scripts/googlemaps-geometry.js'>
+        </script> <!-- <script src = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js'> </script> -->
+
+        <script src='scripts/myScript.js'>
+        </script>
+        <script src='scripts/myjquerycsv.js'>
+        </script>
     </div>
-    <div class="w3-card w3-image" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
-
-    <!-- Scripts -->
-    <script src='scripts/require.js'></script>
-    <script src='scripts/googlemaps-geometry.js'></script> <!-- <script src = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js'> </script> -->
-
-    <script src='scripts/myScript.js'></script>
-    <script src='scripts/myjquerycsv.js'></script>
-
-
 </body>
 </html>
