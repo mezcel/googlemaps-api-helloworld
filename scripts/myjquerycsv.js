@@ -27,9 +27,8 @@ $(document).ready(function() {
                 } else {
                     alert('No data to import!');
                 }
-                document.getElementById('importconfirmation').innerHTML = "Imported: (<i>" + data[0] + "</i>) fields from <b>" + file.name + "</b>."; //csv data dom preview
 
-
+                //use the csv data as waypoints
                 locations.splice(0, 1); //remove field labels record from array
                 initialize();
                 populateDropdownLists(); //argument sub pulled from scripts/myScript.js

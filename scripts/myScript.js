@@ -1,4 +1,4 @@
-var locations;
+var locations; 
 /*
 var locations = [
     ['Auburn', '2436 East University Drive, Suite 2203-04, Auburn, AL 36830', 'https://www.google.com'],
