@@ -1,54 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Hello World - GooglemapsAPI</title>
     <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='styles/w3.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script> <!-- used in csv -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> <!-- used in csv -->
 </head>
-<body>
-    <div class="fileupload" id="dvImportSegments">
-        <fieldset>
-            <legend>Upload your CSV Waypoints File</legend> <input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
-        </fieldset>
+<body class="w3-panel">
+    <div id="dvImportSegments" class="w3-card">
+        <h4>Upload your CSV Waypoints File</h4>
+        <input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
     </div>
-    <div class="w3-container">
-        <div class="w3-card w3-center">
-            <h3>Immediate Destination:</h3>
-            <div class="w3-row">
-                <div class="w3-half w3-container w3-lime">
-                    <label>Start Point:</label>
-                    <select id="selectpoint1" style="width:50%">
-                        <option>
-                            point A
-                        </option>
-                    </select>
-                    <input placeholder='start point address' type="text">
+
+    <div class="w3-card">
+        <h3>Immediate Destination:</h3>
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-6 w3-lime w3-round-large">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">Start Point Waypoint:</div>
+                            <select id="selectpoint1" style="width:100%">
+                                <option>
+                                    point A
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">Start Point Custom Address:</div>
+                            <input id="selectpoint1text" placeholder='start point address' type="text" style="width:100%">
+                        </div>
+                    </div>
                 </div>
-                <div class="w3-half w3-container w3-pink">
-                    <label>End Point:</label>
-                    <select id="selectpoint2" style="width:50%">
-                        <option>
-                            point B
-                        </option>
-                    </select>
-                    <input placeholder='end point address' type="text">
+                <div class="col-sm-6 w3-pink w3-round-large">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">End Point Waypoint:</div>
+                            <select id="selectpoint2" style="width:100%">
+                                <option>
+                                    point B
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="row">End Point Custom Address:</div>
+                            <input id="selectpoint2text" placeholder='start point address' type="text" style="width:100%">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p><button class="w3-btn w3-round-xxlarge w3-orange" onclick="chartCourse()">Chart A Course</button></p>
-            <hr>
-            <p></p>
+            <div class="row">
+                <p class="w3-center" style=" padding-top:10px;">
+                    <button class="w3-btn w3-round-xxlarge w3-orange" style="width:50%;" onclick = "chartCourse()">Chart A Course</button>
+                </p>
+            </div>
         </div>
-        <div class="w3-card w3-image" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
-
+    </div>
+<br>
+    <div class="w3-card w3-round-large">
+        <div class="w3-image w3-round-large" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
+    </div>
         <!-- Scripts -->
-        <script type="text/javascript"
-  src="http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"></script>
+        <script type = "text/javascript"
+  src = "http://maps.googleapis.com/maps/api/js?libraries=weather&sensor=false"></script>
         <script src='scripts/googlemaps-geometry.js'></script> <!-- <script src = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js'> </script> -->
         <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'></script>
         <script src='scripts/myScript.js'></script>
         <script src='scripts/myjquerycsv.js'></script>
-    </div>
+
 </body>
 </html>
