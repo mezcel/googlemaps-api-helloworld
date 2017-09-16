@@ -23,9 +23,17 @@ function initialize(){
 }
 
 function geocodeAddress(locations, i){
+    /*
+    csv format: "title","address","url","phone","email","purpose","hours","about"
+    */
     var title = locations[i][0];
     var address = locations[i][1];
     var url = locations[i][2];
+    var phone = locations[i][3];
+    var email = locations[i][4];
+    var purpose = locations[i][5];
+    var hours = locations[i][6];
+    var about = locations[i][7];
     geocoder.geocode({
         'address': locations[i][1]
     }, function(results, status){
@@ -38,10 +46,15 @@ function geocodeAddress(locations, i){
                 animation: google.maps.Animation.DROP,
                 address: address,
                 url: url,
+                phone: phone,
+                email: email,
+                purpose: purpose,
+                hours: hours,
+                about: about,
                 label: labels[i % labels.length]
             });
 
-            infoWindow(marker, map, title, address, url);
+            infoWindow(marker, map, title, address, url, phone, email, purpose, hours, about);
             bounds.extend(marker.getPosition());
             map.fitBounds(bounds);
         }
@@ -51,10 +64,10 @@ function geocodeAddress(locations, i){
     });
 }
 
-function infoWindow(marker, map, title, address, url) {
+function infoWindow(marker, map, title, address, url, phone, email, purpose, hours, about) {
     google.maps.event.addListener(marker, 'click', function()
     {
-        var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>View location</a></p></div>";
+        var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>weblink</a></p><p>phone: " + phone + "</p><p>email: " + email + "</p><p>purpose: " + purpose + "</p><p>hours: " + hours + "</p><p>about: " + about + "</p></div>";
         iw = new google.maps.InfoWindow(
         {
             content: html,
@@ -118,8 +131,7 @@ function populateDropdownLists() {
 
 }
 
-function chartCourse()
-{
+function chartCourse(){
     google.maps.event.addDomListener(window, "load", initialize);
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -141,8 +153,7 @@ function selectTextWaypoint2(wptOpt){
     document.getElementById("selectpoint2text").value = wptOpt.value;
 }
 
-function csv2googlepoints()
-{
+function csv2googlepoints(){
     //use the csv data as waypoints
     locations.splice(0, 1); //remove field labels record from array
     initialize();
