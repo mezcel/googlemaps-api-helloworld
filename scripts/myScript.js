@@ -126,8 +126,11 @@ function populateDropdownLists() {
         el.value = opt;
         select2.appendChild(el);
     }
+
     document.getElementById('selectpoint1').addEventListener('change', onChangeHandler);
     document.getElementById('selectpoint2').addEventListener('change', onChangeHandler);
+
+
 
 }
 
@@ -136,6 +139,8 @@ function chartCourse(){
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('right-panel'));
+
 
     myWeatherLayer(); // this function is not working
     calculateAndDisplayRoute(directionsService, directionsDisplay);
@@ -169,4 +174,19 @@ function myWeatherLayer(){
 
     var cloudLayer = new google.maps.weather.CloudLayer();
     cloudLayer.setMap(map);
+}
+
+/*
+$(document).ready(function(){
+    $("#toggleCourseDir").click(function(){
+        $("#right-panel").toggle();
+    });
+});
+*/
+function toggleCourseDir(x) {
+	if (document.getElementById(x).style.display == 'none') {
+		document.getElementById(x).style.display = 'block';
+	} else {
+		document.getElementById(x).style.display = 'none';
+	}
 }

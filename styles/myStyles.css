@@ -3,3 +3,48 @@
     /*color: black;
     background-color: white;*/
 }
+/*
+#right-panel {
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+#right-panel select, #right-panel input {
+    font-size: 15px;
+}
+
+#right-panel select {
+    width: 100%;
+}
+
+#right-panel i {
+    font-size: 12px;
+}
+#right-panel {
+    height: 100%;
+    float: right;
+    width: 390px;
+    overflow: auto;
+}
+*/
+#right-panel {
+    display: none;
+    width: 50%;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+    height:450px;
+    border: 2px solid #3872ac;
+    overflow: scroll;
+}
+@media print {
+    #map {
+        height: 500px;
+        margin: 0;
+    }
+    #right-panel {
+        float: none;
+        width: auto;
+    }
+}
