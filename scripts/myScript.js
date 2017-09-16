@@ -76,8 +76,12 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay)
 {
     directionsService.route(
     {
+        /*
         origin: document.getElementById('selectpoint1').value,
         destination: document.getElementById('selectpoint2').value,
+        */
+        origin: document.getElementById('selectpoint1text').value,
+        destination: document.getElementById('selectpoint2text').value,
         travelMode: 'DRIVING'
     }, function(response, status)
     {
@@ -96,6 +100,7 @@ function populateDropdownLists()
 {
     var select1 = document.getElementById("selectpoint1");
     var select2 = document.getElementById("selectpoint2");
+
     var options = locations;
     for (var i = 0; i < options.length; i++)
     {
@@ -105,6 +110,7 @@ function populateDropdownLists()
         el.value = opt;
         select1.appendChild(el);
     }
+
     for (var i = 0; i < options.length; i++)
     {
         var opt = options[i][1];
@@ -125,9 +131,16 @@ function chartCourse()
     directionsDisplay.setMap(map);
 
     myWeatherLayer();
-    
+
     calculateAndDisplayRoute(directionsService, directionsDisplay);
     //actionsDisplay.setMap(map);
+}
+
+function selectTextWaypoint1(wptOpt){
+    document.getElementById("selectpoint1text").value = wptOpt.value;
+}
+function selectTextWaypoint2(wptOpt){
+    document.getElementById("selectpoint2text").value = wptOpt.value;
 }
 
 function csv2googlepoints()
@@ -140,6 +153,7 @@ function csv2googlepoints()
 }
 
 function myWeatherLayer(){
+    // I dont think google supports weather anymore
     var weatherLayer = new google.maps.weather.WeatherLayer({
       temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
     });

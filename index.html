@@ -4,11 +4,12 @@
     <title>Hello World - GooglemapsAPI</title>
     <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='styles/w3.css' rel='stylesheet'>
+    <link href='styles/myStyles.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script> <!-- used in csv -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> <!-- used in csv -->
 </head>
 <body class="w3-panel">
-    <div id="dvImportSegments" class="w3-card">
+    <div id="dvImportSegments" class="w3-card w3-padding-small w3-center">
         <h4>Upload your CSV Waypoints File</h4>
         <input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
     </div>
@@ -17,42 +18,42 @@
         <h3>Immediate Destination:</h3>
         <div class="container">
             <div class="row ">
-                <div class="col-sm-6 w3-lime w3-round-large">
-                    <div class="row">
+                <div class="col-sm-6 w3-light-blue w3-round-large">
+                    <div class="row w3-padding-16">
                         <div class="col-sm-6">
-                            <div class="row">Start Point Waypoint:</div>
-                            <select id="selectpoint1" style="width:100%">
+                            <div class="row"><b>Start Point Waypoint:</b></div>
+                            <select id="selectpoint1" onchange="selectTextWaypoint1(this)" class="myInputStyle">
                                 <option>
                                     point A
                                 </option>
                             </select>
                         </div>
                         <div class="col-sm-6">
-                            <div class="row">Start Point Custom Address:</div>
-                            <input id="selectpoint1text" placeholder='start point address' type="text" style="width:100%">
+                            <div class="row"><b>Start Point Custom Address:</b></div>
+                            <input id="selectpoint1text" placeholder='start point address' type="text" class="myInputStyle">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 w3-pink w3-round-large">
-                    <div class="row">
+                <div class="col-sm-6 w3-pale-red w3-round-large">
+                    <div class="row w3-padding-16">
                         <div class="col-sm-6">
-                            <div class="row">End Point Waypoint:</div>
-                            <select id="selectpoint2" style="width:100%">
+                            <div class="row"><b>End Point Waypoint:</b></div>
+                            <select id="selectpoint2" onchange="selectTextWaypoint2(this)" class="myInputStyle">
                                 <option>
                                     point B
                                 </option>
                             </select>
                         </div>
                         <div class="col-sm-5">
-                            <div class="row">End Point Custom Address:</div>
-                            <input id="selectpoint2text" placeholder='start point address' type="text" style="width:100%">
+                            <div class="row"><b>End Point Custom Address:</b></div>
+                            <input id="selectpoint2text" placeholder='start point address' type="text" class="myInputStyle">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <p class="w3-center" style=" padding-top:10px;">
-                    <button class="w3-btn w3-round-xxlarge w3-orange" style="width:50%;" onclick = "chartCourse()">Chart A Course</button>
+                    <button class="w3-btn w3-round-xxlarge w3-dark-gray" style="width:50%;" onclick = "chartCourse()">Chart A Course</button>
                 </p>
             </div>
         </div>
