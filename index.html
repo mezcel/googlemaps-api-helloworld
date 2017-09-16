@@ -4,10 +4,8 @@
     <title></title>
     <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link href='styles/w3.css' rel='stylesheet'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script> <!-- used in csv -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> <!-- used in csv -->
 </head>
 <body>
     <div class="fileupload" id="dvImportSegments">
@@ -20,18 +18,22 @@
             <h3>Immediate Destination:</h3>
             <div class="w3-row">
                 <div class="w3-half w3-container w3-lime">
-                    <label>Start Point:</label> <select id="selectpoint1" style="width:50%">
+                    <label>Start Point:</label>
+                    <select id="selectpoint1" style="width:50%">
                         <option>
                             point A
                         </option>
-                    </select> <input placeholder='start point address' type="text">
+                    </select>
+                    <input placeholder='start point address' type="text">
                 </div>
                 <div class="w3-half w3-container w3-pink">
-                    <label>End Point:</label> <select id="selectpoint2" style="width:50%">
+                    <label>End Point:</label>
+                    <select id="selectpoint2" style="width:50%">
                         <option>
                             point B
                         </option>
-                    </select> <input placeholder='end point address' type="text">
+                    </select>
+                    <input placeholder='end point address' type="text">
                 </div>
             </div>
             <p><button class="w3-btn w3-round-xxlarge w3-orange" onclick="chartCourse()">Chart A Course</button></p>
