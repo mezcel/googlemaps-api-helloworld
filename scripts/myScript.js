@@ -123,6 +123,9 @@ function chartCourse()
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
+
+    myWeatherLayer();
+    
     calculateAndDisplayRoute(directionsService, directionsDisplay);
     //actionsDisplay.setMap(map);
 }
@@ -133,4 +136,15 @@ function csv2googlepoints()
     locations.splice(0, 1); //remove field labels record from array
     initialize();
     populateDropdownLists(); //argument sub pulled from scripts/myScript.js
+
+}
+
+function myWeatherLayer(){
+    var weatherLayer = new google.maps.weather.WeatherLayer({
+      temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
+    });
+    weatherLayer.setMap(map);
+
+    var cloudLayer = new google.maps.weather.CloudLayer();
+    cloudLayer.setMap(map);
 }
