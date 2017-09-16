@@ -1,8 +1,7 @@
-var locations;
+var locations = [];
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var markers = [];
 var csvWptArr;
-//var mywaypointarrayjsonObject = require('scripts/mywaypointarrayjsonObject.json'); //with path
-//locations = mywaypointarrayjsonObject;
 var geocoder;
 var map;
 var bounds = new google.maps.LatLngBounds();
@@ -10,9 +9,9 @@ var bounds = new google.maps.LatLngBounds();
 function initialize(){
     map = new google.maps.Map(document.getElementById("map_canvas"),
     {
-        center: new google.maps.LatLng(32.629283, -85.463560),
+        center: new google.maps.LatLng(30.836582, -83.978781),
         /* regional center point initial view */
-        zoom: 1,
+        zoom: 7,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     geocoder = new google.maps.Geocoder();
@@ -26,6 +25,7 @@ function geocodeAddress(locations, i){
     /*
     csv format: "title","address","url","phone","email","purpose","hours","about"
     */
+
     var title = locations[i][0];
     var address = locations[i][1];
     var url = locations[i][2];
@@ -53,7 +53,6 @@ function geocodeAddress(locations, i){
                 about: about,
                 label: labels[i % labels.length]
             });
-
             infoWindow(marker, map, title, address, url, phone, email, purpose, hours, about);
             bounds.extend(marker.getPosition());
             map.fitBounds(bounds);
@@ -126,12 +125,6 @@ function populateDropdownLists() {
         el.value = opt;
         select2.appendChild(el);
     }
-
-    document.getElementById('selectpoint1').addEventListener('change', onChangeHandler);
-    document.getElementById('selectpoint2').addEventListener('change', onChangeHandler);
-
-
-
 }
 
 function chartCourse(){
@@ -142,7 +135,7 @@ function chartCourse(){
     directionsDisplay.setPanel(document.getElementById('right-panel'));
 
 
-    myWeatherLayer(); // this function is not working
+    // myWeatherLayer(); // this function is not working
     calculateAndDisplayRoute(directionsService, directionsDisplay);
 
     //transit mode
@@ -164,18 +157,6 @@ function csv2googlepoints(){
     initialize();
     populateDropdownLists(); //argument sub pulled from scripts/myScript.js
 }
-
-function myWeatherLayer(){
-    // I dont think google supports weather anymore
-    var weatherLayer = new google.maps.weather.WeatherLayer({
-      temperatureUnits: google.maps.weather.TemperatureUnit.FAHRENHEIT
-    });
-    weatherLayer.setMap(map);
-
-    var cloudLayer = new google.maps.weather.CloudLayer();
-    cloudLayer.setMap(map);
-}
-
 /*
 $(document).ready(function(){
     $("#toggleCourseDir").click(function(){
@@ -183,6 +164,7 @@ $(document).ready(function(){
     });
 });
 */
+
 function toggleCourseDir(x) {
 	if (document.getElementById(x).style.display == 'none') {
 		document.getElementById(x).style.display = 'block';

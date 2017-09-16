@@ -6,6 +6,7 @@
 
 * [googlemaps api](https://github.com/googlemaps/)
 * [googlemaps-geometry.js](https://developers.google.com/maps/)
+* [markerclusterer.js](https://github.com/googlemaps/v3-utility-library/blob/master/markerclusterer/src/markerclusterer.js)
 * [jquery-csv.js](https://github.com/evanplaice/jquery-csv/)
 
 ### My Application features were inspired by:
