@@ -1,6 +1,20 @@
-"title","address","url","phone","email","purpose","hours","about"
-"Auburn","2436 East University Drive, Suite 2203-04, Auburn, AL 36830","https://workforce.expresspros.com","(334)246-3910","jobs.AuburnAL@ExpressPros.com","workforce express","10am-5pm","local temp labor"
-"Dothan","3702 Ross Clark Circle, Suite 3 Dothan, AL 36303","https://workforce.expresspros.com","(334) 671-1315","jobs.dothanal@ExpressPros.com","workforce express","10am-5pm","local temp labor"
-"Mobile","3662 Dauphin Street, Suite B, Mobile, AL 36608","https://workforce.expresspros.com","(251) 476-8210","jobs.mobileal@ExpressPros.com","workforce express","10am-5pm","local temp labor"
-"Pizza Hut","1710 W Tennessee St, Tallahassee, FL 32304","pizzahut.com","(850) 222-9024","n/a","pizza","11am-2pm","lunch"
-"Pappa Johns","1429 W Tennessee St, Tallahassee, FL 32304","pj.pizza","(850) 224-1222","n/a","pizza","11am-3pm","lunch"
+title,address,url,phone,email,purpose,hours,about
+Auburn,"2436 East University Drive, Suite 2203-04, Auburn, AL 36830",https://workforce.expresspros.com,(334)246-3910,jobs.AuburnAL@ExpressPros.com,workforce express,10am-5pm,local temp labor
+Dothan,"3702 Ross Clark Circle, Suite 3 Dothan, AL 36303",https://workforce.expresspros.com,(334) 671-1315,jobs.dothanal@ExpressPros.com,workforce express,10am-5pm,local temp labor
+Mobile,"3662 Dauphin Street, Suite B, Mobile, AL 36608",https://workforce.expresspros.com,(251) 476-8210,jobs.mobileal@ExpressPros.com,workforce express,10am-5pm,local temp labor
+Pizza Hut,"1710 W Tennessee St, Tallahassee, FL 32304",pizzahut.com,(850) 222-9024,n/a,pizza,11am-2pm,lunch
+Pappa Johns,"1429 W Tennessee St, Tallahassee, FL 32304",pj.pizza,(850) 224-1222,n/a,pizza,11am-3pm,lunch
+Montgomery,"5729 Carmichael Parkway, Montgomery, AL 36117",https://workforce.expresspros.com,(251) 476-8210,Jobs.MontgomeryAL@ExpressPros.com,workforce express,10am-5pm,local temp labor
+Valdosta,"Gornto Road, Across from Publix, Valdosta, GA 31601",https://workforce.expresspros.com,(229) 293-0030,jobs.valdostaga@expresspros.com,workforce express,10am-5pm,local temp labor
+Gainesville,"Oak Street, Suite 2, Gainesville, GA 30501",https://workforce.expresspros.com,(678) 780-3000,Jobs.GainesvilleGA@ExpressPros.com,workforce express,11am-5pm,local temp labor
+Augusta,"808 Greene Street, Suite 100, Augusta, GA 30901",https://workforce.expresspros.com,(706) 364-4473,Jobs.AugustaGA@ExpressPros.com,workforce express,12am-5pm,local temp labor
+Ocala,"Southwest 10th Street, Ocala, FL 34474",https://workforce.expresspros.com,(352) 867-8055,jobs.ocalafl@expresspros.com,workforce express,13am-5pm,local temp labor
+Orlando,"Sand Lake Road, Orlando, FL 32809",https://workforce.expresspros.com,(407) 240-7633,jobs.orlandofl@expresspros.com,workforce express,14am-5pm,local temp labor
+Seminole County,"W Lake Mary Boulevard, Sanford, FL 32773",https://workforce.expresspros.com,(407) 268-6867,Jobs.SeminoleCountyFL@ExpressPros.com,workforce express,15am-5pm,local temp labor
+Jacksonville (West),"Blanding Boulevard, Suite B, Orange Park, FL 32073",https://workforce.expresspros.com,(904) 644-7017,Jobs.JacksonvilleFLWest@ExpressPros.com,workforce express,16am-5pm,local temp labor
+Targeted Job Fairs,"Huntsville Marriott, 5 Tranquility Base, Huntsville, AL, 35805",idk,idk,idk,job fair,11:00am-3:00pm,tech job fair
+Targeted Job Fairs,"Hilton Atlanta Northeast, 5993 Peachtree Industrial Boulevard, Peachtree Corners, GA 30092",idk,idk,idk,job fair,11:00am-3:00pm,tech job fair
+Orlando Career Fair,"DoubleTree by Hilton Orlando at SeaWorld, 10100 International Dr, Orlando, FL 32821",idk,idk,idk,job fair,11AM – 2PM,tech job fair
+Job Club: A Work2Win Event,"Redemption Church, 2000 Lane Ave, Jacksonville, Florida 32210",https://flourish-now.org/about-us/,idk,idk,pep talk,6:30 – 7:45PM,tech job fair
+Mega Job Fair,"DoubleTree by Hilton Orlando at SeaWorld, 10100 International Dr, Orlando, FL 32821",idk,idk,idk,job fair,10AM – 2PM,tech job fair
+Cruiseline Hiring Even,"George Steinbrenner, 1 Steinbrenner Dr, Tampa, FL 33614",,,,job fair,10AM – 2PM,dock work
