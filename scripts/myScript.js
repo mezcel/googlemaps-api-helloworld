@@ -67,7 +67,7 @@ function geocodeAddress(locations, i){
 function infoWindow(marker, map, title, address, url, phone, email, purpose, hours, about) {
     google.maps.event.addListener(marker, 'click', function()
     {
-        var html = "<div><h3>" + title + "</h3><p>" + address + "<br></div><a href='" + url + "'>weblink</a></p><p>phone: " + phone + "</p><p>email: " + email + "</p><p>purpose: " + purpose + "</p><p>hours: " + hours + "</p><p>about: " + about + "</p></div>";
+        var html = "<div><h3>Title: " + title + "</h3><p>address: " + address + "<br></div><a href='" + url + "'>weblink</a></p><p>phone: " + phone + "</p><p>email: " + email + "</p><p>purpose: " + purpose + "</p><p>hours: " + hours + "</p><p>about: " + about + "</p></div>";
         iw = new google.maps.InfoWindow(
         {
             content: html,
