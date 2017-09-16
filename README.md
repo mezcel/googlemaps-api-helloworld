@@ -1,17 +1,19 @@
 # googlemaps-api-helloworld
 
-playing with googlemaps api
-https://github.com/googlemaps/
+## My traveling free-wifi map: Used for proximity and landmark orienteering
 
+### Proprietary Scripts
 
-this is my test atm: https://developers.google.com/maps/documentation/javascript/get-api-key?refresh=1
-https://developers.google.com/maps/documentation/javascript/marker-clustering
+* [googlemaps api](https://github.com/googlemaps/)
+* [googlemaps-geometry.js](https://developers.google.com/maps/)
+* [jquery-csv.js](https://github.com/evanplaice/jquery-csv/)
 
-Users of the standard API: Free until exceeding 25,000 map loads per 24 hours
+### My Application features were inspired by:
 
-I need this for lat/lon: http://www.latlong.net/convert-address-to-lat-long.html
+* [jquery-csv](https://github.com/evanplaice/jquery-csv/)
 
-genreal idea inspired by: https://codepen.io/clintabrown/pen/jEOmZK?editors=0010 and https://developers.google.com/maps/documentation/javascript/examples/directions-simple
+### Tools/Reffs Used for Continued Development
 
-CSV stuff
-https://github.com/evanplaice/jquery-csv/
+* [I need this for lat/lon](http://www.latlong.net/convert-address-to-lat-long.html)
+* [Googlemaps api clustering](https://developers.google.com/maps/documentation/javascript/marker-clustering)
+* [Googlemaps api directions](https://developers.google.com/maps/documentation/javascript/examples/directions-panel)
