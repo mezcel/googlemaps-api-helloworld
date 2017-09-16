@@ -1,4 +1,5 @@
 # googlemaps-api-helloworld
+###### Full Merge Replace from Branch: 'expanded-idea-2'
 
 ## My traveling free-wifi map: Used for proximity and landmark orienteering
 
