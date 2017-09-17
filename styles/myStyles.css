@@ -1,6 +1,12 @@
 .myInputStyle{
     width: 100%;
 }
+
+.myDropdownListGridPadding {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
 #txtFileUpload {
   text-align: center;
   margin: auto;
@@ -32,91 +38,6 @@
     }
 }
 
-/*header navbar*/
-nav.navbar {
-    background: #fff;
-    /*font-family: 'Lato', serif;*/
-    font-size: 1.2rem;
-    letter-spacing: 0.4rem;
-}
-.scroll-down {
-    margin-top: 3%;
-}
-
-/*banner*/
-header .banner {
-    background: url("../img/large-google-api-logo.png") 70% no-repeat;
-    background-position: top;
-    background-size: 100%;
-    height: 55%;
-    position: relative;
-    z-index: -10;
-}
-.banner-content {
-    /*color: #fff;*/
-    color: black;
-    font-family: "Lato", serif;
-    text-align: right;
-    text-transform: uppercase;
-    margin-top: 17%;
-    letter-spacing: 0.4rem;
-}
-.banner-content h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-}
-.banner-content h3 {
-    font-size: 3rem;
-    margin: 5% 0;
-    /*color: #eeeeee;*/
-    color: black;
-    font-weight: bold;
-}
-
-.parallaxTopPadding {
-    padding-top: 60px;
-}
-
-/* media queries */
-@media screen and (min-width: 991px) {
-    header .banner {
-        background-position: center;
-    }
-}
-@media screen and (max-width: 990px) {
-    header .banner-content {
-        text-align: center;
-    }
-    .scroll-down {
-        display: none;
-    }
-}
-@media screen and (max-width: 767px) {
-    header .banner-content h1 {
-        font-size: 4rem;
-    }
-    header .banner-content h3 {
-        font-size: 2.5rem;
-    }
-    header .social-list {
-        display: none;
-    }
-    .block {
-        width: 65%;
-        margin: 20px auto;
-    }
-}
-@media screen and (max-width: 491px) {
-    header .banner-content h1 {
-        font-size: 2.5rem;
-    }
-    header .banner-content h3 {
-        font-size: 1.5rem;
-    }
-}
-
-
-
 /* bootstrap radiobuttons */
 
 label.btn span {
@@ -136,7 +57,7 @@ label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
     color: #7AA3CC;    display: inline;
 }
 label:hover input[type="radio"] ~ i.fa {
-color: #7AA3CC;
+    color: #7AA3CC;
 }
 
 label input[type="checkbox"] ~ i.fa.fa-square-o{
@@ -152,7 +73,7 @@ label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
     color: #7AA3CC;    display: inline;
 }
 label:hover input[type="checkbox"] ~ i.fa {
-color: #7AA3CC;
+    color: #7AA3CC;
 }
 
 div[data-toggle="buttons"] label.active{
@@ -160,33 +81,33 @@ div[data-toggle="buttons"] label.active{
 }
 
 div[data-toggle="buttons"] label {
-display: inline-block;
-padding: 6px 12px;
-margin-bottom: 0;
-font-size: 14px;
-font-weight: normal;
-line-height: 2em;
-text-align: left;
-white-space: nowrap;
-vertical-align: top;
-cursor: pointer;
-background-color: none;
-border: 0px solid
-#c8c8c8;
-border-radius: 3px;
-color: #c8c8c8;
--webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
--o-user-select: none;
-user-select: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 2em;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    background-color: none;
+    border: 0px solid
+    #c8c8c8;
+    border-radius: 3px;
+    color: #c8c8c8;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 
 div[data-toggle="buttons"] label:hover {
-color: #7AA3CC;
+    color: #7AA3CC;
 }
 
 div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
--webkit-box-shadow: none;
-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
