@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Hello World - GooglemapsAPI</title>
     <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='font-awesome-4.7.0/css/font-awesome.min.css' rel='stylesheet'>
     <link href='styles/w3.css' rel='stylesheet'>
     <link href='styles/myStyles.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
@@ -52,14 +53,38 @@
             </div>
         </div>
     </header>
+    <br>
     <section class="parallaxTopPadding" id="parallaxwpt">
-            <div class="container">
-                <div class="w3-card w3-padding-small w3-center" id="dvImportSegments">
-                    <h4>Upload your CSV Waypoints File</h4><input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
+            <div class="w3-card w3-padding-small w3-center">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Upload CSV Waypoints</h3>
+                        <input accept=".csv" id="txtFileUpload" name="File Upload" type="file" class="btn btn-default btn-file">
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>Waypoints by State</h3>
+                        <form>
+                            <div class="btn-group btn-group-horizontal" data-toggle="buttons">
+                                <label class="btn active">
+                                    <input type="radio" name='gender1' checked><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>ALL</span>
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span>FL</span>
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span>AL</span>
+                                </label>
+                                <label class="btn">
+                                    <input type="radio" name='gender1'><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span>GA</span>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <br>
             <div class="w3-card">
-                <h3>Immediate Destination:</h3>
+                <h3 class="w3-center">Immediate Destination:</h3>
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 w3-light-blue w3-round-large">
@@ -100,31 +125,38 @@
                         </div>
                     </div>
                     <div class="row">
-                        <p class="w3-center" style=" padding-top:10px;"><button class="w3-btn w3-round-xxlarge w3-dark-gray" onclick="chartCourse()" style="width:50%;">Chart A Course</button><br>
-                        <b>Mode of Travel:</b> <select id="mode">
-                            <option value="DRIVING">
-                                Driving
-                            </option>
-                            <option value="WALKING">
-                                Walking
-                            </option>
-                            <option value="BICYCLING">
-                                Bicycling
-                            </option>
-                            <option value="TRANSIT">
-                                Transit
-                            </option>
-                        </select> <button onclick="toggleCourseDir('right-panel')">Toggle Course Directions</button></p>
+                        <p class="w3-center" style=" padding-top:10px;">
+                            <button class="w3-block w3-button w3-gray w3-round-xxlarge" onclick="chartCourse()">Chart A Course</button>
+                            <br>
+                            <b>Mode of Travel:</b>
+                            <select id="mode">
+                                <option value="DRIVING">
+                                    Driving
+                                </option>
+                                <option value="WALKING">
+                                    Walking
+                                </option>
+                                <option value="BICYCLING">
+                                    Bicycling
+                                </option>
+                                <option value="TRANSIT">
+                                    Transit
+                                </option>
+                            </select>
+                            <button onclick="toggleCourseDir('right-panel')">Toggle Course Directions</button>
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="parallaxTopPadding" id="parallaxmap">
             <div class="w3-card w3-round-large">
                 <div class="w3-round-large w3-right" id="right-panel"></div>
                 <div class="w3-image w3-round-large" id="map_canvas" style="height:500px; border: 2px solid #3872ac;"></div>
             </div>
-        </section><!-- Scripts -->
+        </section>
+        <!-- Scripts -->
         <script src='scripts/googlemaps-geometry.js'>
         </script>
         <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'>
@@ -135,6 +167,6 @@
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M384Q1_chAod5kgdcpYi-NvQXjtDsUo&callback=initialize"
   type="text/javascript"></script>
-    </section>
+
 </body>
 </html>
