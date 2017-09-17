@@ -13,19 +13,24 @@
     </script><!-- used in csv -->
 </head>
 <body class="w3-panel">
-    <header class="clearfix" id="home">
+    <header class="clearfix" id="parallaxhome">
         <nav class="navbar navbar-default navbar-fixed-top" id="nav">
             <div class="container">
                 <div class="navbar-header">
                     <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
                 </div>
                 <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="https://github.com/mezcel/googlemaps-api-helloworld/tree/expanded-idea-3">Github</a>
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li data-elem="parallax">
-                            <a href="#home">HOME</a>
+                        <li data-elem="parallaxhome">
+                            <a href="#parallaxhome">HOME</a>
                         </li>
                         <li data-elem="parallaxwpt">
-                            <a href="#parallaxwpt">WPTs/ROUT</a>
+                            <a href="#parallaxwpt">POINTS/ROUTS</a>
                         </li>
                         <li data-elem="parallaxmap">
                             <a href="#parallaxmap">MAP</a>
@@ -34,7 +39,7 @@
                 </div>
             </div>
         </nav>
-        <div class="banner parallax scroll" id="parallax">
+        <div class="banner" id="parallax">
             <div class="container">
                 <div class="row">
                     <div class="col-md-offset-4 col-md-8 col-sm-12 banner-content">
@@ -47,8 +52,7 @@
             </div>
         </div>
     </header>
-    <section class="parallaxTopPadding scroll" id="parallaxwpt">
-        <section class="parallaxrout scroll" id="parallaxrout">
+    <section class="parallaxTopPadding" id="parallaxwpt">
             <div class="container">
                 <div class="w3-card w3-padding-small w3-center" id="dvImportSegments">
                     <h4>Upload your CSV Waypoints File</h4><input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
@@ -115,10 +119,10 @@
                 </div>
             </div>
         </section>
-        <section class="scroll" id="parallaxmap">
+        <section class="parallaxTopPadding" id="parallaxmap">
             <div class="w3-card w3-round-large">
                 <div class="w3-round-large w3-right" id="right-panel"></div>
-                <div class="w3-image w3-round-large" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
+                <div class="w3-image w3-round-large" id="map_canvas" style="height:500px; border: 2px solid #3872ac;"></div>
             </div>
         </section><!-- Scripts -->
         <script src='scripts/googlemaps-geometry.js'>

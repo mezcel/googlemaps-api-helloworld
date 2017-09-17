@@ -63,15 +63,12 @@ header .banner {
     color: black;
     font-weight: bold;
 }
-/*banner end*/
-/*header end*/
-
 
 .parallaxTopPadding {
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
-* media queries */
+/* media queries */
 @media screen and (min-width: 991px) {
     header .banner {
         background-position: center;
@@ -83,9 +80,6 @@ header .banner {
     }
     .scroll-down {
         display: none;
-    }
-    .contacts-data {
-        text-align: center;
     }
 }
 @media screen and (max-width: 767px) {
@@ -101,9 +95,6 @@ header .banner {
     .block {
         width: 65%;
         margin: 20px auto;
-    }
-    .skills img {
-        width: 65%;
     }
 }
 @media screen and (max-width: 491px) {
