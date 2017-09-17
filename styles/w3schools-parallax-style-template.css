@@ -22,13 +22,13 @@ body, html {
 
 /* Second image (Portfolio) */
 .bgimg-2 {
-    background-image: url("../img/parallax2.jpg");
+    background-image: url("../img/rendering-night-landscape-colony-water-lake-sea-girl-rocks-buildings-road-stars-fantasy-sea-ocean-wallpaper-1.jpg");
     min-height: 400px;
 }
 
 /* Third image (Contact) */
 .bgimg-3 {
-    background-image: url("../img/parallax3.jpg");
+    background-image: url("../img/12-21-2015_2016-event-roadmap.png");
     min-height: 400px;
 }
 
