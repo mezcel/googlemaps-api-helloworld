@@ -1,6 +1,6 @@
 # googlemaps-api-helloworld
 
-## My traveling free-wifi map: Used for proximity and landmark orienteering
+## My traveling free-wifi stop map: Used for proximity and landmark orienteering... on the road
 
 ### Current Dev Stop Point
 
