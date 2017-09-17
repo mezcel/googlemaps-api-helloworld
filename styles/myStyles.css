@@ -6,13 +6,18 @@
   margin: auto;
 }
 
+#map_canvas{
+    height:550px;
+    border: 2px solid #3872ac;
+}
+
 #right-panel {
     display: none;
     width: 50%;
     font-family: 'Roboto','sans-serif';
     line-height: 30px;
     padding-left: 10px;
-    height:500px;
+    height:550px;
     border: 2px solid #3872ac;
     overflow: scroll;
 }
