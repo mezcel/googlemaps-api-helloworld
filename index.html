@@ -1,122 +1,134 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Hello World - GooglemapsAPI</title>
-        <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
-        <link href='styles/w3.css' rel='stylesheet'>
-        <link href='styles/myStyles.css' rel='stylesheet'>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script> <!-- used in csv -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> <!-- used in csv -->
-    </head>
-    <body class="w3-panel">
-        <header class="clearfix" id="home">
-            <nav class="navbar navbar-default navbar-fixed-top" id="nav">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-                    </div>
-                    <div class="navbar-collapse collapse" id="navbar">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li data-elem="parallax">
-                                <a href="#home">HOME</a>
-                            </li>
-                            <li data-elem="parallaxwpt">
-                                <a href="#parallaxwpt">WPTs/ROUT</a>
-                            </li>
-                            <li data-elem="parallaxmap">
-                                <a href="#parallaxmap">MAP</a>
-                            </li>
-                        </ul>
-                    </div>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World - GooglemapsAPI</title>
+    <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='styles/w3.css' rel='stylesheet'>
+    <link href='styles/myStyles.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
+    </script><!-- used in csv -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js">
+    </script><!-- used in csv -->
+</head>
+<body class="w3-panel">
+    <header class="clearfix" id="home">
+        <nav class="navbar navbar-default navbar-fixed-top" id="nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
                 </div>
-            </nav>
-            <div class="banner parallax scroll" id="parallax">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-offset-4 col-md-8 col-sm-12 banner-content">
-                            <h3>Hello World</h3>
-                            <h1>Google Maps API</h1>
-                            <h3>Mezcel</h3>
-                        </div>
-                    </div>
-                    <div class="row"><img alt="" class="image-responsive center-block scroll-down" src="img/scrollimg.png"></div>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li data-elem="parallax">
+                            <a href="#home">HOME</a>
+                        </li>
+                        <li data-elem="parallaxwpt">
+                            <a href="#parallaxwpt">WPTs/ROUT</a>
+                        </li>
+                        <li data-elem="parallaxmap">
+                            <a href="#parallaxmap">MAP</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </header>
-<section class="parallaxTopPadding scroll" id="parallaxwpt">
-    <section class="parallaxrout scroll" id="parallaxrout">
-    <div class="container">
-        <div id="dvImportSegments" class="w3-card w3-padding-small w3-center">
-            <h4>Upload your CSV Waypoints File</h4>
-            <input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
-        </div>
-    </div>
-        <div class="w3-card">
-            <h3>Immediate Destination:</h3>
+        </nav>
+        <div class="banner parallax scroll" id="parallax">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 w3-light-blue w3-round-large">
-                        <div class="row w3-padding-16">
-                            <div class="col-sm-6">
-                                <div class="row"><b>Start Point Waypoint:</b></div>
-                                <select id="selectpoint1" onchange="selectTextWaypoint1(this)" class="myInputStyle">
-                                    <option>
-                                        point A
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="row"><b>Start Point Custom Address:</b></div>
-                                <input id="selectpoint1text" placeholder='start point address' type="text" class="myInputStyle">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 w3-pale-red w3-round-large">
-                        <div class="row w3-padding-16">
-                            <div class="col-sm-6">
-                                <div class="row"><b>End Point Waypoint:</b></div>
-                                <select id="selectpoint2" onchange="selectTextWaypoint2(this)" class="myInputStyle">
-                                    <option>
-                                        point B
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="row"><b>End Point Custom Address:</b></div>
-                                <input id="selectpoint2text" placeholder='start point address' type="text" class="myInputStyle">
-                            </div>
-                        </div>
+                    <div class="col-md-offset-4 col-md-8 col-sm-12 banner-content">
+                        <h3>Hello World</h3>
+                        <h1>Google Maps API</h1>
+                        <h3>Mezcel</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <p class="w3-center" style=" padding-top:10px;">
-                        <button class="w3-btn w3-round-xxlarge w3-dark-gray" style="width:50%;" onclick = "chartCourse()">Chart A Course</button>
-                        <br>
-                        <b> Mode of Travel: </b>
-                        <select id="mode">
-                            <option value="DRIVING">Driving</option>
-                            <option value="WALKING">Walking</option>
-                            <option value="BICYCLING">Bicycling</option>
-                            <option value="TRANSIT">Transit</option>
-                        </select>
-                        <button onclick="toggleCourseDir('right-panel')">Toggle Course Directions</button>
-                    </p>
-
-                </div>
+                <div class="row"><img alt="" class="image-responsive center-block scroll-down" src="img/scrollimg.png"></div>
             </div>
         </div>
-</section>
-<section class="scroll" id="parallaxmap">
-        <div class="w3-card w3-round-large">
-            <div id="right-panel" class="w3-round-large w3-right"></div>
-            <div class="w3-image w3-round-large" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
-        </div>
-</section>
-        <!-- Scripts -->
-        <script src='scripts/googlemaps-geometry.js'></script> <!-- <script src = 'https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js'> </script> -->
-        <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'></script>
-        <script src='scripts/myScript.js'></script>
-        <script src='scripts/myjquerycsv.js'></script>
-    </body>
+    </header>
+    <section class="parallaxTopPadding scroll" id="parallaxwpt">
+        <section class="parallaxrout scroll" id="parallaxrout">
+            <div class="container">
+                <div class="w3-card w3-padding-small w3-center" id="dvImportSegments">
+                    <h4>Upload your CSV Waypoints File</h4><input accept=".csv" id="txtFileUpload" name="File Upload" type="file">
+                </div>
+            </div>
+            <div class="w3-card">
+                <h3>Immediate Destination:</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 w3-light-blue w3-round-large">
+                            <div class="row w3-padding-16">
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <b>Start Point Waypoint:</b>
+                                    </div><select class="myInputStyle" id="selectpoint1" onchange="selectTextWaypoint1(this)">
+                                        <option>
+                                            point A
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <b>Start Point Custom Address:</b>
+                                    </div><input class="myInputStyle" id="selectpoint1text" placeholder='start point address' type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 w3-pale-red w3-round-large">
+                            <div class="row w3-padding-16">
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <b>End Point Waypoint:</b>
+                                    </div><select class="myInputStyle" id="selectpoint2" onchange="selectTextWaypoint2(this)">
+                                        <option>
+                                            point B
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <b>End Point Custom Address:</b>
+                                    </div><input class="myInputStyle" id="selectpoint2text" placeholder='start point address' type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="w3-center" style=" padding-top:10px;"><button class="w3-btn w3-round-xxlarge w3-dark-gray" onclick="chartCourse()" style="width:50%;">Chart A Course</button><br>
+                        <b>Mode of Travel:</b> <select id="mode">
+                            <option value="DRIVING">
+                                Driving
+                            </option>
+                            <option value="WALKING">
+                                Walking
+                            </option>
+                            <option value="BICYCLING">
+                                Bicycling
+                            </option>
+                            <option value="TRANSIT">
+                                Transit
+                            </option>
+                        </select> <button onclick="toggleCourseDir('right-panel')">Toggle Course Directions</button></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="scroll" id="parallaxmap">
+            <div class="w3-card w3-round-large">
+                <div class="w3-round-large w3-right" id="right-panel"></div>
+                <div class="w3-image w3-round-large" id="map_canvas" style="height:450px; border: 2px solid #3872ac;"></div>
+            </div>
+        </section><!-- Scripts -->
+        <script src='scripts/googlemaps-geometry.js'>
+        </script>
+        <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'>
+        </script>
+        <script src='scripts/myScript.js'>
+        </script>
+        <script src='scripts/myjquerycsv.js'>
+        </script>
+    </section>
+</body>
 </html>
