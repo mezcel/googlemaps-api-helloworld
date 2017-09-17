@@ -4,10 +4,9 @@
 
 ### Current Dev Stop Point
 
-* This is a Parallax Remake of Branch 3
-* Still figuring out how it should look, that explains all the rando-styles and libraries
-* I hope to knock out a technique to filter and consolidate my waypoints
-* I dont know how to "group cluster" using street name address, Google API seems to only like LatLong. Reverse Geocode is not doing the trick at the moment either
+* This is a Parallax Remake of Branch 3, this is modeled after a generic W3 Schools Template
+* I hope to make a technique to filter and consolidate my waypoints.
+* I dont know how to "group cluster" using street name address, Google API seems to only like LatLong. Reverse Geocode is not doing the trick at the moment either.
 
 ### Proprietary Scripts
 

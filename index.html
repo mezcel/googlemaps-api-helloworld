@@ -30,24 +30,28 @@
             </div>
         </div><!-- Container (About Section) -->
         <div class="w3-content w3-container w3-padding-64" id="parallaxwpts">
-            <h3 class="w3-center">
-                WPTs
-            </h3>
+            <h3 class="w3-center">WPTs</h3>
+            <hr>
             <p class="w3-center">
                 <em>Instructions and Waypoints</em>
             </p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Generate a .csv file with your desired way-points. Restrict the list to less than 20 locations. Each record should contain data in the following order: "title", "address", "url", "phone", "email", "purpose", "hours", "about". It is recommended that you use a spreadsheet and export a .csv file which is delineated by only commas separating each field.
             </p>
-            <h3>
-                Upload CSV Waypoints
-            </h3><input accept=".csv" class="btn btn-default btn-file" id="txtFileUpload" name="File Upload" type="file">
-            <h3>
-                Waypoint Bundle
-            </h3>
-            <form>
+            <p>
+                To slim down the display of points you can filter the .csv by state or flags to focus your travels.
+            </p>
+            <hr>
+            <h3>Upload CSV Waypoints</h3>
+            <input accept=".csv" class="btn btn-default btn-file" id="txtFileUpload" name="File Upload" type="file">
+            <h3>Waypoint Filter</h3>
+            <form class="w3-center">
                 <div class="btn-group btn-group-horizontal" data-toggle="buttons">
-                    <label class="btn active"><input checked name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span>ALL</span></label> <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span>FL</span></label> <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span>AL</span></label> <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span>GA</span></label> <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span><i aria-hidden="true" class="fa fa-flag"></i></span></label>
+                    <label class="btn active"><input checked name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> ALL</span></label>
+                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> FL</span></label>
+                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> AL</span></label>
+                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> GA</span></label>
+                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> <i aria-hidden="true" class="fa fa-flag"></i></span></label>
                 </div>
             </form>
         </div><!-- Second Parallax Image with Portfolio Text -->
@@ -62,7 +66,8 @@
             </h3>
             <p class="w3-center">
                 <i aria-hidden="true" class="fa fa-road fa-4x"></i>
-            </p><br>
+            </p>
+            <p class="w3-center">Input a starting street address and an ending address. Either select from the dropdown box, or enter a unique address.</p>
             <div class="w3-card">
                 <div class="w3-row">
                     <div class="w3-col s6 w3-center">
@@ -73,7 +78,7 @@
                     </div>
                 </div>
                 <div class="w3-row w3-container">
-                    <div class="w3-col s6 w3-light-green w3-center myDropdownListGridPadding">
+                    <div class="w3-col s6 w3-center myDropdownListGridPadding" style="border-radius: 15px 0px 0px 15px; background-color:#99ff99;">
                         <p></p>
                         <h4>
                             Start Point Waypoint:
@@ -87,7 +92,7 @@
                             <b>Start Point Street Address:</b> <input class="myInputStyle" id="selectpoint1text" placeholder='start point address' type="text">
                         </p>
                     </div>
-                    <div class="w3-col s6 w3-pale-red w3-center myDropdownListGridPadding">
+                    <div class="w3-col s6 w3-center myDropdownListGridPadding" style="border-radius: 0px 15px 15px 0px; background-color:#ffb3b3;">
                         <p></p>
                         <h4>
                             End Point Waypoint:
@@ -111,12 +116,12 @@
         </div><!-- Third Parallax Image with Portfolio Text -->
         <div class="bgimg-3 w3-display-container w3-opacity-min">
             <div class="w3-display-middle">
-                <span class="w3-xxlarge w3-text-white w3-wide">Google Maps API</span>
+                <span class="w3-xxlarge w3-text-white w3-wide">Google Map</span>
             </div>
         </div><!-- Container (Contact Section) -->
         <div class="w3-content w3-container w3-padding-64" id="parallaxmap">
             <h3 class="w3-center">
-                Google Maps API
+                Google Map
             </h3>
             <div class="w3-row w3-container">
                 <div class="w3-col s4">
