@@ -39,7 +39,7 @@
     }
 }
 
-/* bootstrap radiobuttons */
+/* bootstrap radiobuttons start */
 
 label.btn span {
   font-size: 1.5em ;
@@ -111,4 +111,9 @@ div[data-toggle="buttons"] label:hover {
 div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+/* bootstrap radiobuttons end */
+
+.bootstrap-select.btn-group .dropdown-menu li:not(.disabled) > a:hover small {
+  color: purple;
 }
