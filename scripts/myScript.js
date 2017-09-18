@@ -23,7 +23,7 @@ function initialize(){
 
 function geocodeAddress(locations, i){
     /*
-    csv format: "title","address","url","phone","email","purpose","hours","about"
+        csv format: "title","address","url","phone","email","purpose","hours","about"
     */
 
     var title = locations[i][0];
@@ -34,6 +34,7 @@ function geocodeAddress(locations, i){
     var purpose = locations[i][5];
     var hours = locations[i][6];
     var about = locations[i][7];
+
     geocoder.geocode({
         'address': locations[i][1]
     }, function(results, status){
@@ -108,36 +109,34 @@ function populateDropdownLists() {
     var select2 = document.getElementById("selectpoint2");
 
     var mytokens;
-
     var options = locations;
-    for (var i = 0; i < options.length; i++)
-    {
-        /*
-        var opt = options[i][1];
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        select1.appendChild(el);
-        */
-        mytokens = options[i][0] + " " + options[i][1] + " " + options[i][2] + " " + options[i][3] + " " + options[i][4] + " " + options[i][5] + " " + options[i][6] + " " + options[i][7];
+    var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
+console.log(myFilterVar);
+    switch(myFilterVar) {
+        case 'All':
+            for (var i = 0; i < options.length; i++)
+            {
+                mytokens = options[i][0] + " " + options[i][1] + " " + options[i][2] + " " + options[i][3] + " " + options[i][4] + " " + options[i][5] + " " + options[i][6] + " " + options[i][7];
+                $('#selectpoint1').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
+                $("#selectpoint1").selectpicker("refresh");
 
-        $('#selectpoint1').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
-        $("#selectpoint1").selectpicker("refresh");
-    }
+                $('#selectpoint2').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
+                $("#selectpoint2").selectpicker("refresh");
+            }
+            break;
+        default:
+            for (var i = 0; i < options.length; i++)
+            {
+                if (options[i][1].indexOf(myFilterVar) != -1) {
+                    mytokens = options[i][0] + " " + options[i][1] + " " + options[i][2] + " " + options[i][3] + " " + options[i][4] + " " + options[i][5] + " " + options[i][6] + " " + options[i][7];
+                    $('#selectpoint1').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
+                    $("#selectpoint1").selectpicker("refresh");
 
-    for (var i = 0; i < options.length; i++)
-    {
-        /*
-        var opt = options[i][1];
-        var el = document.createElement("option");
-        el.textContent = opt;
-        el.value = opt;
-        select2.appendChild(el);
-        */
-        mytokens = options[i][0] + " " + options[i][1] + " " + options[i][2] + " " + options[i][3] + " " + options[i][4] + " " + options[i][5] + " " + options[i][6] + " " + options[i][7];
-
-        $('#selectpoint2').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
-        $("#selectpoint2").selectpicker("refresh");
+                    $('#selectpoint2').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
+                    $("#selectpoint2").selectpicker("refresh");
+                }
+            }
+            break;
     }
 }
 
@@ -171,13 +170,6 @@ function csv2googlepoints(){
     initialize();
     populateDropdownLists(); //argument sub pulled from scripts/myScript.js
 }
-/*
-$(document).ready(function(){
-    $("#toggleCourseDir").click(function(){
-        $("#right-panel").toggle();
-    });
-});
-*/
 
 function toggleCourseDir(x) {
 	if (document.getElementById(x).style.display == 'none') {

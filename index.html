@@ -39,21 +39,27 @@
                 Generate a .csv file with your desired way-points. Restrict the list to less than 20 locations. Each record should contain data in the following order: "title", "address", "url", "phone", "email", "purpose", "hours", "about". It is recommended that you use a spreadsheet and export a .csv file which is delineated by only commas separating each field.
             </p>
             <p>
-                To slim down the display of points you can filter the .csv by state or flags to focus your travels.
+                To slim down the display of points you can group the .csv by state or flags to focus your travels.
             </p>
             <hr>
-            <h3>Upload CSV Waypoints</h3>
-            <input accept=".csv" class="btn btn-default btn-file" id="txtFileUpload" name="File Upload" type="file">
-            <h3>Waypoint Filter</h3>
-            <form class="w3-center">
-                <div class="btn-group btn-group-horizontal" data-toggle="buttons">
-                    <label class="btn active"><input checked name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> ALL</span></label>
-                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> FL</span></label>
-                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> AL</span></label>
-                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> GA</span></label>
-                    <label class="btn"><input name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> <i aria-hidden="true" class="fa fa-flag"></i></span></label>
-                </div>
-            </form>
+            <div class="w3-card form-group w3-panel">
+                <p>
+                    <h3>Waypoint Grouping</h3>
+                    <form class="w3-center" id="wptfilterform">
+                        <div class="btn-group btn-group-horizontal" data-toggle="buttons">
+                            <label class="btn active"><input value="All" checked name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i> <span> ALL</span></label>
+                            <label class="btn"><input value="FL" name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> FL</span></label>
+                            <label class="btn"><input value="AL" name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> AL</span></label>
+                            <label class="btn"><input value="GA" name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> GA</span></label>
+                            <label class="btn"><input value="FLAG" name='rdofields' type="radio"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span> <i aria-hidden="true" class="fa fa-flag"></i></span></label>
+                        </div>
+                    </form>
+                </p>
+                <p>
+                    <h3>Upload CSV Waypoints</h3>
+                    <input accept=".csv" class="btn btn-default btn-file" id="txtFileUpload" name="File Upload" type="file">
+                </p>
+            </div>
         </div>
         <!-- Second Parallax Image with Portfolio Text -->
            <div class="bgimg-2 w3-display-container w3-opacity-min">
@@ -67,21 +73,22 @@
                   <i aria-hidden="true" class="fa fa-road fa-4x"></i>
               </p>
               <p class="w3-center">Input a starting street address and an ending address. Either select from the dropdown box, or enter a unique address.</p>
-              <div class="row  w3-center">
-                <div class="col-xs-6">
-                    <i class="fa fa-map-marker fa-2x" style="color:#00cc44"></i>
-                </div>
-                <div class="col-xs-6">
-                    <i class="fa fa-map-marker fa-2x" style="color:#ff6666"></i>
-                </div>
-              </div>
+              <p>
+                  <div class="row  w3-center">
+                    <div class="col-xs-6">
+                        <i class="fa fa-map-marker fa-2x" style="color:#00cc44"></i>
+                    </div>
+                    <div class="col-xs-6">
+                        <i class="fa fa-map-marker fa-2x" style="color:#ff6666"></i>
+                    </div>
+                  </div>
+              </p>
               <div class="w3-card">
                   <div class="row">
-
                     <div class="col-xs-6">
                         <div class="form-group w3-panel">
                             <label for="selectpoint1">Start Point Street Address</label>
-                            <select class="selectpicker form-control show-tick" data-live-search="true" data-style="btn-primary" onchange="selectTextWaypoint1(this)" id="selectpoint1">
+                            <select class="selectpicker form-control show-tick" data-live-search="true" data-style="btn-success" onchange="selectTextWaypoint1(this)" id="selectpoint1">
                                 <option data-tokens="end"  data-subtext="title of end waypoint">start point</option>
                                 <option data-divider="true"></option>
                             </select>
@@ -138,23 +145,6 @@
                 </div>
                 <div class="w3-col s4">
                     <div class="w3-center">
-                        <!--
-                        <b>Mode of Travel:</b>
-                        <select id="mode">
-                            <option value="DRIVING">
-                                Driving
-                            </option>
-                            <option value="WALKING">
-                                Walking
-                            </option>
-                            <option value="BICYCLING">
-                                Bicycling
-                            </option>
-                            <option value="TRANSIT">
-                                Transit
-                            </option>
-                        </select>
--->
                         <div class="form-group">
                             <label for="mode">Mode of Travel</label>
                             <select class="selectpicker form-control show-tick" id="mode">
@@ -191,7 +181,7 @@
                     <i class="fa fa-facebook-official w3-hover-opacity"></i> <i class="fa fa-instagram w3-hover-opacity"></i> <i class="fa fa-snapchat w3-hover-opacity"></i> <i class="fa fa-pinterest-p w3-hover-opacity"></i> <i class="fa fa-twitter w3-hover-opacity"></i> <i class="fa fa-linkedin w3-hover-opacity"></i>
                 </div>
                 <p>
-                    Powered by <a class="w3-hover-text-green" href="https://www.w3schools.com/w3css/default.asp" target="_blank" title="W3.CSS">w3.css</a>
+                    Powered by <a class="w3-hover-text-green" href="https://www.w3schools.com/w3css/default.asp" target="_blank" title="W3.CSS">w3</a>, <a class="w3-hover-text-green" href="https://github.com/evanplaice/jquery-csv" target="_blank" title="jquery-csv">jquery-csv</a>, <a class="w3-hover-text-green" href="https://silviomoreto.github.io/bootstrap-select/" target="_blank" title="bootstrap-select">bootstrap-select</a>, and <a class="w3-hover-text-green" href="https://developers.google.com/maps/" target="_blank" title="Google Maps API">googlemaps-geometry</a>
                 </p>
             </footer>
 
