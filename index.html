@@ -56,71 +56,6 @@
             </form>
         </div>
         <!-- Second Parallax Image with Portfolio Text -->
-
-        <!--
-        <div class="bgimg-2 w3-display-container w3-opacity-min">
-                   <div class="w3-display-middle">
-                       <span class="w3-xxlarge w3-text-white w3-wide">NAVIGATION</span>
-                   </div>
-               </div>
-               <div class="w3-content w3-container w3-padding-64" id="parallaxnav">
-                   <h3 class="w3-center">
-                       NAVIGATION
-                   </h3>
-                   <p class="w3-center">
-                       <i aria-hidden="true" class="fa fa-road fa-4x"></i>
-                   </p>
-                   <p class="w3-center">Input a starting street address and an ending address. Either select from the dropdown box, or enter a unique address.</p>
-                   <div class="w3-card">
-                       <div class="w3-row">
-                           <div class="w3-col s6 w3-center">
-                               <i class="fa fa-map-marker fa-2x" style="color:green"></i>
-                           </div>
-                           <div class="w3-col s6 w3-center">
-                               <i class="fa fa-map-marker fa-2x" style="color:red"></i>
-                           </div>
-                       </div>
-                       <div class="w3-row w3-container">
-                           <div class="w3-col s6 w3-center myDropdownListGridPadding" style="border-radius: 15px 0px 0px 15px; background-color:#99ff99;">
-                               <p></p>
-                               <h4>
-                                   Start Point Waypoint:
-                               </h4>
-                               <select class="selectpicker" id="selectpoint1" onchange="selectTextWaypoint1(this)">
-                                   <optgroup label="point A" data-live-search="true">
-                                       <option>
-
-                                       </option>
-                                   </optgroup>
-                               </select>
-                               <p></p>
-                               <p>
-                                   <b>Start Point Street Address:</b> <input class="myInputStyle" id="selectpoint1text" placeholder='start point address' type="text">
-                               </p>
-                           </div>
-                           <div class="w3-col s6 w3-center myDropdownListGridPadding" style="border-radius: 0px 15px 15px 0px; background-color:#ffb3b3;">
-                               <p></p>
-                               <h4>
-                                   End Point Waypoint:
-                               </h4><select class="myInputStyle" id="selectpoint2" onchange="selectTextWaypoint2(this)">
-                                   <option>
-                                       point B
-                                   </option>
-                               </select>
-                               <p></p>
-                               <p>
-                                   <b>End Point Street Address:</b> <input class="myInputStyle" id="selectpoint2text" placeholder='end point address' type="text">
-                               </p>
-                           </div>
-                           <div class="w3-row">
-                               <p class="w3-center" style=" padding-top:10px;">
-                                   <button class="w3-block w3-button w3-gray w3-round-xxlarge" onclick="chartCourse(); location.href='#parallaxmap';">Chart A Course</button>
-                               </p>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           -->
            <div class="bgimg-2 w3-display-container w3-opacity-min">
               <div class="w3-display-middle">
                   <span class="w3-xxlarge w3-text-white w3-wide">NAVIGATION</span>
@@ -146,35 +81,26 @@
                     <div class="col-xs-6">
                         <div class="form-group w3-panel">
                             <label for="selectpoint1">Start Point Street Address</label>
-
-                        <!--
-                            <select id="selectpoint1" onchange="selectTextWaypoint1(this)">
-                                    <option></option>
+                            <select class="selectpicker form-control show-tick" data-live-search="true" data-style="btn-primary" onchange="selectTextWaypoint1(this)" id="selectpoint1">
+                                <option data-tokens="end"  data-subtext="title of end waypoint">start point</option>
+                                <option data-divider="true"></option>
                             </select>
-                        -->
-                        <select class="form-control show-tick" data-style="btn-primary" onchange="selectTextWaypoint1(this)" id="selectpoint1">
-<option data-tokens="end"  data-subtext="title of end waypoint">start point</option>
-                        </select>
                         </div>
                     </div>
 
                     <div class="col-xs-6">
                         <div class="form-group w3-panel">
-                            <label for="selectpoint2">Start Point Street Address</label>
-                            <!--<select class="selectpicker form-control" data-style="btn-danger" data-live-search="true" onchange="selectTextWaypoint2(this)" id="selectpoint2">
+                            <label for="selectpoint2">End Point Street Address</label>
+                            <select class="selectpicker form-control show-tick" data-style="btn-danger" data-live-search="true" onchange="selectTextWaypoint2(this)" id="selectpoint2">
                                 <option data-tokens="end"  data-subtext="title of end waypoint">end point</option>
                                 <option data-divider="true"></option>
-                            </select>-->
-
-                            <select class="form-control" data-style="btn-danger" onchange="selectTextWaypoint2(this)" id="selectpoint2">
-                                    <option></option>
                             </select>
                         </div>
                     </div>
 
                     <div class="col-xs-6">
                         <div class="form-group w3-panel">
-                            <label for="selectpoint1text">Start Point Street Address</label>
+                            <label for="selectpoint1text">End Point Street Address</label>
                             <input class="form-control" placeholder='start point address' type="text" id="selectpoint1text">
                         </div>
                     </div>
@@ -205,16 +131,16 @@
             </div>
         </div><!-- Container (Contact Section) -->
         <div class="w3-content w3-container w3-padding-64" id="parallaxmap">
-            <h3 class="w3-center">
-                Google Map
-            </h3>
+            <h3 class="w3-center">Google Map</h3>
             <div class="w3-row w3-container">
                 <div class="w3-col s4">
                     <span style="color:white;">[foo]</span>
                 </div>
                 <div class="w3-col s4">
                     <div class="w3-center">
-                        <b>Mode of Travel:</b> <select id="mode">
+                        <!--
+                        <b>Mode of Travel:</b>
+                        <select id="mode">
                             <option value="DRIVING">
                                 Driving
                             </option>
@@ -228,6 +154,25 @@
                                 Transit
                             </option>
                         </select>
+-->
+                        <div class="form-group">
+                            <label for="mode">Mode of Travel</label>
+                            <select class="selectpicker form-control show-tick" id="mode">
+                                <option  data-icon="glyphicon-heart" value="DRIVING">
+                                    Driving
+                                </option>
+                                <option value="WALKING">
+                                    Walking
+                                </option>
+                                <option value="BICYCLING">
+                                    Bicycling
+                                </option>
+                                <option value="TRANSIT">
+                                    Transit
+                                </option>
+                            </select>
+                        </div>
+
                     </div>
                 </div>
                 <div class="w3-col s4">
