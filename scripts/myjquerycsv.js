@@ -33,6 +33,7 @@ $(document).ready(function()
                 if (data && data.length > 0)
                 {
                     alert('Imported -' + data.length + '- waypoints successfully!');
+                    location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
                 }
                 else
                 {
