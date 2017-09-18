@@ -4,8 +4,6 @@
 
 ### Current Dev Stop Point
 
-* This is a Parallax Remake of Branch 4, this is employs bootstrap-select
-* I hope to make a technique to filter and consolidate my waypoints.
 * I don't know how to "group cluster" using street name address, Google API seems to only like LatLong. Reverse Geocode is not doing the trick at the moment either.
 
 ### Proprietary Scripts
