@@ -10,7 +10,6 @@
         <link href='styles/w3.css' rel='stylesheet'>
         <link href='bootstrap-3.3.7/dist/css/bootstrap.min.css' rel='stylesheet'>
         <link href='bootstrap-select-1.12.4/dist/css/bootstrap-select.min.css' rel='stylesheet'>
-        <link href="styles/w3.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='styles/myStyles.css' rel='stylesheet'>
@@ -122,7 +121,83 @@
                    </div>
                </div>
            -->
-           
+           <div class="bgimg-2 w3-display-container w3-opacity-min">
+              <div class="w3-display-middle">
+                  <span class="w3-xxlarge w3-text-white w3-wide">NAVIGATION</span>
+              </div>
+          </div>
+          <div class="w3-content w3-container w3-padding-64" id="parallaxnav">
+              <h3 class="w3-center">NAVIGATION</h3>
+              <p class="w3-center">
+                  <i aria-hidden="true" class="fa fa-road fa-4x"></i>
+              </p>
+              <p class="w3-center">Input a starting street address and an ending address. Either select from the dropdown box, or enter a unique address.</p>
+              <div class="row  w3-center">
+                <div class="col-xs-6">
+                    <i class="fa fa-map-marker fa-2x" style="color:#00cc44"></i>
+                </div>
+                <div class="col-xs-6">
+                    <i class="fa fa-map-marker fa-2x" style="color:#ff6666"></i>
+                </div>
+              </div>
+              <div class="w3-card">
+                  <div class="row">
+
+                    <div class="col-xs-6">
+                        <div class="form-group w3-panel">
+                            <label for="selectpoint1">Start Point Street Address</label>
+
+                        <!--
+                            <select id="selectpoint1" onchange="selectTextWaypoint1(this)">
+                                    <option></option>
+                            </select>
+                        -->
+                        <select class="form-control show-tick" data-style="btn-primary" onchange="selectTextWaypoint1(this)" id="selectpoint1">
+<option data-tokens="end"  data-subtext="title of end waypoint">start point</option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group w3-panel">
+                            <label for="selectpoint2">Start Point Street Address</label>
+                            <!--<select class="selectpicker form-control" data-style="btn-danger" data-live-search="true" onchange="selectTextWaypoint2(this)" id="selectpoint2">
+                                <option data-tokens="end"  data-subtext="title of end waypoint">end point</option>
+                                <option data-divider="true"></option>
+                            </select>-->
+
+                            <select class="form-control" data-style="btn-danger" onchange="selectTextWaypoint2(this)" id="selectpoint2">
+                                    <option></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="form-group w3-panel">
+                            <label for="selectpoint1text">Start Point Street Address</label>
+                            <input class="form-control" placeholder='start point address' type="text" id="selectpoint1text">
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group w3-panel">
+                            <label for="selectpoint2text">End Point Street Address</label>
+                            <input class="form-control" placeholder='end point address' type="text" id="selectpoint2text">
+                        </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 w3-center">
+                        <div class="form-group w3-panel">
+                            <button type="button" class="btn w3-block" onclick="chartCourse(); location.href='#parallaxmap';">Chart A Course</button>
+                        </div>
+                    </div>
+                  </div>
+
+              </div>
+          </div>
+
+
         <!-- Third Parallax Image with Portfolio Text -->
         <div class="bgimg-3 w3-display-container w3-opacity-min">
             <div class="w3-display-middle">
@@ -173,7 +248,10 @@
                 <p>
                     Powered by <a class="w3-hover-text-green" href="https://www.w3schools.com/w3css/default.asp" target="_blank" title="W3.CSS">w3.css</a>
                 </p>
-            </footer><!-- Add Google Maps -->
+            </footer>
+
+<script src="scripts/jquery.min.js"></script>
+            <!-- Add Google Maps -->
             <script src="scripts/w3schools-parallax-script-template.js">
             </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
@@ -182,8 +260,10 @@
             </script><!-- used in csv -->
             <script src='scripts/googlemaps-geometry.js'>
             </script>
+
             <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'>
             </script>
+
             <script src='bootstrap-select-1.12.4/dist/js/bootstrap-select.min.js'>
             </script>
             <script src='scripts/myScript.js'>

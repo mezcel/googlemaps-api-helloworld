@@ -110,11 +110,23 @@ function populateDropdownLists() {
     var options = locations;
     for (var i = 0; i < options.length; i++)
     {
+        /*
         var opt = options[i][1];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
         select1.appendChild(el);
+        */
+        /*
+        <option data-tokens="start" data-subtext="title of start waypoint">start point</option>
+        <option data-divider="true"></option>
+        */
+
+        //select1.appendChild('<option data-tokens="'+options[i][1]+'" data-subtext="'+options[i][1]+'">'+options[i][1]+'</option>';
+
+        $('#selectpoint1').append('<option data-tokens="start'+i+'" data-subtext="title of start waypoint'+i+'">start point'+i+'</option>');
+
+        //select1.selectpicker('refresh');
     }
 
     for (var i = 0; i < options.length; i++)
@@ -125,6 +137,8 @@ function populateDropdownLists() {
         el.value = opt;
         select2.appendChild(el);
     }
+
+    select1.selectpicker('refresh');
 }
 
 function chartCourse(){
