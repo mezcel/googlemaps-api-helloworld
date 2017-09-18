@@ -130,7 +130,6 @@
               </div>
           </div>
 
-
         <!-- Third Parallax Image with Portfolio Text -->
         <div class="bgimg-3 w3-display-container w3-opacity-min">
             <div class="w3-display-middle">
@@ -139,11 +138,11 @@
         </div><!-- Container (Contact Section) -->
         <div class="w3-content w3-container w3-padding-64" id="parallaxmap">
             <h3 class="w3-center">Google Map</h3>
-            <div class="w3-row w3-container">
-                <div class="w3-col s4">
+            <div class="row w3-container">
+                <div class="col-xs-4">
                     <span style="color:white;">[foo]</span>
                 </div>
-                <div class="w3-col s4">
+                <div class="col-xs-4">
                     <div class="w3-center">
                         <div class="form-group">
                             <label for="mode">Mode of Travel</label>
@@ -162,11 +161,10 @@
                                 </option>
                             </select>
                         </div>
-
                     </div>
                 </div>
-                <div class="w3-col s4">
-                    <button class="w3-right" id="btnToggleDirections" onclick="toggleCourseDir('right-panel')"><i aria-hidden="true" class="fa fa-map-o"></i></button>
+                <div class="col-xs-4 w3-panel">
+                    <button class="w3-right" id="btnToggleDirections" onclick="toggleCourseDir('right-panel')"  style="height:100%;"><i aria-hidden="true" class="fa fa-map-o"> Directions</i></button>
                 </div>
             </div>
             <div id="parallaxmap">
@@ -184,29 +182,28 @@
                     Powered by <a class="w3-hover-text-green" href="https://www.w3schools.com/w3css/default.asp" target="_blank" title="W3.CSS">w3</a>, <a class="w3-hover-text-green" href="https://github.com/evanplaice/jquery-csv" target="_blank" title="jquery-csv">jquery-csv</a>, <a class="w3-hover-text-green" href="https://silviomoreto.github.io/bootstrap-select/" target="_blank" title="bootstrap-select">bootstrap-select</a>, and <a class="w3-hover-text-green" href="https://developers.google.com/maps/" target="_blank" title="Google Maps API">googlemaps-geometry</a>
                 </p>
             </footer>
-
-<script src="scripts/jquery.min.js"></script>
-            <!-- Add Google Maps -->
-            <script src="scripts/w3schools-parallax-script-template.js">
-            </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js">
-            </script><!-- used in csv -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js">
-            </script><!-- used in csv -->
-            <script src='scripts/googlemaps-geometry.js'>
-            </script>
-
-            <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'>
-            </script>
-
-            <script src='bootstrap-select-1.12.4/dist/js/bootstrap-select.min.js'>
-            </script>
-            <script src='scripts/myScript.js'>
-            </script>
-            <script src='scripts/myjquerycsv.js'>
-            </script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M384Q1_chAod5kgdcpYi-NvQXjtDsUo&callback=initialize" type="text/javascript">
-            </script>
         </div>
+
+        <script src="scripts/jquery.min.js">console.log("scripts/jquery.min.js");
+        </script>
+        <!-- Add Google Maps -->
+        <script src="scripts/w3schools-parallax-script-template.js">console.log("scripts/w3schools-parallax-script-template.js");
+        </script>
+        <script src="scripts/jquery.csv-0.71.min.js">console.log("scripts/jquery.csv-0.71.min.js");
+        </script><!-- used in csv -->
+        <script src='scripts/googlemaps-geometry.js'>console.log("scripts/googlemaps-geometry.js");
+        </script>
+
+        <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'>console.log("bootstrap-3.3.7/dist/js/bootstrap.min.js");
+        </script>
+
+        <script src='bootstrap-select-1.12.4/dist/js/bootstrap-select.min.js'>console.log("bootstrap-select-1.12.4/dist/js/bootstrap-select.min.js");
+        </script>
+        <script src='scripts/myScript.js'>console.log("scripts/myScript.js");
+        </script>
+        <script src='scripts/myjquerycsv.js'>console.log("scripts/myjquerycsv.js");
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M384Q1_chAod5kgdcpYi-NvQXjtDsUo&callback=initialize" type="text/javascript">
+        </script>
     </body>
 </html>
