@@ -4,9 +4,9 @@
 
 ### Current Dev Stop Point
 
-* This is a Parallax Remake of Branch 3, this is modeled after a generic W3 Schools Template
+* This is a Parallax Remake of Branch 4, this is employs bootstrap-select
 * I hope to make a technique to filter and consolidate my waypoints.
-* I dont know how to "group cluster" using street name address, Google API seems to only like LatLong. Reverse Geocode is not doing the trick at the moment either.
+* I don't know how to "group cluster" using street name address, Google API seems to only like LatLong. Reverse Geocode is not doing the trick at the moment either.
 
 ### Proprietary Scripts
 
