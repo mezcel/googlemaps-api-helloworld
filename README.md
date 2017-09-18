@@ -4,6 +4,8 @@
 
 ### Current Dev Stop Point
 
+* The JS is a bit sloppy, not optimized, but it works and makes sense.
+* I will tidy up the style related library some other time.
 * I don't know how to "group cluster" using street name address, Google API seems to only like LatLong. Reverse Geocode is not doing the trick at the moment either.
 
 ### Proprietary Scripts
