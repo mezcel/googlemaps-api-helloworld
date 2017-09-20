@@ -7,7 +7,7 @@ class ExpressprosSpider(scrapy.Spider):
 
     # clones the webpage into an html
 
-     def parse(self, response):
+    def parse(self, response):
         filename = response.url.split("/")[-2] + '.html'
         with open(filename, 'wb') as f:
             f.write(response.body)
