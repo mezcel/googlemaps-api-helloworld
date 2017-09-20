@@ -4,7 +4,7 @@ var markers = [];
 var csvWptArr;
 var geocoder;
 var map;
-var bounds = new google.maps.LatLngBounds();
+
 
 function initialize(){
     map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -22,6 +22,8 @@ function initialize(){
 }
 
 function geocodeAddress(locations, i){
+    var bounds = new google.maps.LatLngBounds();
+
     /*
         csv format: "title","address","url","phone","email","purpose","hours","about"
     */
@@ -111,7 +113,7 @@ function populateDropdownLists() {
     var mytokens;
     var options = locations;
     var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
-console.log(myFilterVar);
+    console.log("Filter Check:", myFilterVar);
     switch(myFilterVar) {
         case 'All':
             for (var i = 0; i < options.length; i++)
@@ -122,6 +124,8 @@ console.log(myFilterVar);
 
                 $('#selectpoint2').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
                 $("#selectpoint2").selectpicker("refresh");
+
+                console.log(options[i][1]);
             }
             break;
         default:

@@ -13,6 +13,9 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <link href="font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='styles/myStyles.css' rel='stylesheet'>
+
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M384Q1_chAod5kgdcpYi-NvQXjtDsUo&callback=geometry" type="text/javascript">
+        </script>
     </head>
     <body>
         <!-- Navbar (sit on top) -->
@@ -57,7 +60,7 @@
                 </p>
                 <p>
                     <div class="row">
-                        <div class="form-group w3-panel w3-center">
+                        <div class="w3-panel w3-center">
                             <div class="col-xs-6">
                                 <h3>Upload CSV - Spreadsheet</h3>
                                 <input accept=".csv" class="btn btn-default btn-file" id="csvFileUpload" name="File Upload Csv" type="file">
@@ -201,8 +204,8 @@
         </script>
         <script src="scripts/jquery.csv-0.71.min.js">console.log("scripts/jquery.csv-0.71.min.js");
         </script><!-- used in csv -->
-        <script src='scripts/googlemaps-geometry.js'>console.log("scripts/googlemaps-geometry.js");
-        </script>
+        <!--<script src='scripts/googlemaps-geometry.js'>console.log("scripts/googlemaps-geometry.js");
+        </script>-->
 
         <script src='bootstrap-3.3.7/dist/js/bootstrap.min.js'>console.log("bootstrap-3.3.7/dist/js/bootstrap.min.js");
         </script>
@@ -213,7 +216,7 @@
         </script>
         <script src='scripts/myjquerycsv.js'>console.log("scripts/myjquerycsv.js");
         </script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M384Q1_chAod5kgdcpYi-NvQXjtDsUo&callback=initialize" type="text/javascript">
-        </script>
+        <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M384Q1_chAod5kgdcpYi-NvQXjtDsUo&callback=initialize" type="text/javascript">
+        </script>-->
     </body>
 </html>
