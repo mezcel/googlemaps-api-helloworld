@@ -8,6 +8,10 @@ class ExpressprosSpider(scrapy.Spider):
     # clones the webpage into an html
 
     def parse(self, response):
-        filename = response.url.split("/")[-2] + '.html'
+        #clone https://workforce.expresspros.com/locations/state
+        #filename = response.url.split("/")[-2] + '.html'
+
+        #clone https://workforce.expresspros.com/locations/state/Alabama
+        filename = response.url.split("/")[-3] + '.html'
         with open(filename, 'wb') as f:
             f.write(response.body)
