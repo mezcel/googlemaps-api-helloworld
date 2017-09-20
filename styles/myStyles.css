@@ -8,9 +8,16 @@
     padding-right: 8px;
 }
 
-#txtFileUpload {
-  text-align: center;
-  margin: auto;
+#csvFileUpload {
+    width: 95%;
+    text-align: center;
+    margin: auto;
+}
+
+#jsonFileUpload {
+    width: 95%;
+    text-align: center;
+    margin: auto;
 }
 
 #map_canvas{
