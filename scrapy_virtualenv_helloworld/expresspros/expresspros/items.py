@@ -10,5 +10,10 @@ import scrapy
 
 class ExpressprosItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    title = scrapy.Field()
+    streetAddress = scrapy.Field()
+    phone = scrapy.Field()
+    email = scrapy.Field()
+    url = scrapy.Field()
+    #jobsurl = scrapy.Field()
     pass
