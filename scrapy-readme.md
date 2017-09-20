@@ -47,4 +47,22 @@ Note: ```myscrappydev``` is a name i chose
 
 Create new repo in the virtual environment
 
-``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy startproject conifers ```
+``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy startproject [my_crawler_name] ``` In this git my project is expresspros
+
+Open directory in a text editor, I like to use Atom
+
+``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy atom ```
+
+Create file ``` [my_crawler_name]/[myspider_name].py ``` similar to what i have in git. In this git, it is ``` expresspros/spiders/expresspros_spider.py```
+
+Edit file ``` expresspros/items.py ``` similar to what i have in git
+
+Run my crawler
+
+``` (myscrapydev)  user@computername ~/myscrapydev $ cd [where_ever_i_stored_it] ```
+
+```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.csv -t csv```
+
+or
+
+```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.json -t json```
