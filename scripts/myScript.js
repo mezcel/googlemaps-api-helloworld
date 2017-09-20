@@ -116,8 +116,7 @@ function populateDropdownLists() {
     console.log("Filter Check:", myFilterVar);
     switch(myFilterVar) {
         case 'All':
-            for (var i = 0; i < options.length; i++)
-            {
+            for (var i = 0; i < options.length; i++){
                 mytokens = options[i][0] + " " + options[i][1] + " " + options[i][2] + " " + options[i][3] + " " + options[i][4] + " " + options[i][5] + " " + options[i][6] + " " + options[i][7];
                 $('#selectpoint1').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
                 $("#selectpoint1").selectpicker("refresh");
@@ -129,8 +128,7 @@ function populateDropdownLists() {
             }
             break;
         default:
-            for (var i = 0; i < options.length; i++)
-            {
+            for (var i = 0; i < options.length; i++){
                 if (options[i][1].indexOf(myFilterVar) != -1) {
                     mytokens = options[i][0] + " " + options[i][1] + " " + options[i][2] + " " + options[i][3] + " " + options[i][4] + " " + options[i][5] + " " + options[i][6] + " " + options[i][7];
                     $('#selectpoint1').append('<option data-tokens="'+mytokens+ " " +options[i][1]+'" data-subtext="'+options[i][0]+'">'+options[i][1]+'</option>');
@@ -182,3 +180,28 @@ function toggleCourseDir(x) {
 		document.getElementById(x).style.display = 'none';
 	}
 }
+
+// UNDER_CONSTRUCTION !!!
+$(document).ready(function(){
+    // The event listener for the file upload (JSON)
+    // i took a different approach compared to my CSV input
+    // UNDER_CONSTRUCTION !!!
+    var myJSONlocation;
+
+    $('#jsonFileUpload').change( function(event) {
+        var tmppath = URL.createObjectURL(event.target.files[0]); //temporary file location for path uploading
+        $.getJSON(tmppath, function(data) {
+            console.log(data, myJSONarr);//output your data to console
+            /*
+                Scrapy makes the following json format
+                Array [ Object, Object, Object, Object, Object, Object, Object, Object, Object, Object ]
+            */
+        });
+
+        var options = data; // i need an array format optimized for a for loop
+        for (var i = 0; i < options.length; i++){
+            // populate my dropdown list
+        }
+
+    });
+});

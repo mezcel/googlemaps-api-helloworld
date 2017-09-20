@@ -1,8 +1,7 @@
-$(document).ready(function()
-{
+$(document).ready(function(){
     // The event listener for the file upload
-    document.getElementById('csvFileUpload').addEventListener('change', upload, false);
-    
+    document.getElementById('csvFileUpload').addEventListener('change', uploadcsv, false);
+
     // Method that checks that the browser supports the HTML5 File API
     function browserSupportFileUpload()
     {
@@ -14,7 +13,7 @@ $(document).ready(function()
         return isCompatible;
     }
     // Method that reads and processes the selected file
-    function upload(evt)
+    function uploadcsv(evt)
     {
         if (!browserSupportFileUpload())
         {
