@@ -12,6 +12,6 @@ class ExpressprosSpider(scrapy.Spider):
         #filename = response.url.split("/")[-2] + '.html'
 
         #clone https://workforce.expresspros.com/locations/state/Alabama
-        filename = response.url.split("/")[-3] + '.html'
+        filename = response.url.split("/")[-1] + '.html'
         with open(filename, 'wb') as f:
             f.write(response.body)

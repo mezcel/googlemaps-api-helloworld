@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <title>Express Office Locator Office List</title>
+
+    <link href="/Content/TimeCapture.css" rel="stylesheet" />
+     <link href="/Content/jquery.timeentry.css" rel="stylesheet" />
+    <link href="/Content/Check.css" rel="stylesheet" />
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" type="text/css" rel="Stylesheet" />
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAcFJoJ9nGRdT01UvmGKyw1yf6_Ak4yiyM&sensor=false&libraries=places" type="text/javascript"></script>    
+
+    <script src="/Scripts/jquery/jquery-1.8.3.js"></script>
+<script src="/Scripts/jquery/jquery.blockUI.js"></script>
+<script src="/Scripts/jquery/jquery.unobtrusive-ajax.js"></script>
+<script src="/Scripts/jquery/validation/jquery.validate.js"></script>
+<script src="/Scripts/jquery/validation/jquery.validate.unobtrusive.js"></script>
+
+    <script src="/Scripts/bootstrap/bootstrap.js"></script>
+<script src="/Scripts/bootstrap/bootstrap-dialog.js"></script>
+<script src="/Scripts/bootstrap/bootstrap-datetimepicker.js"></script>
+
+    <script src="/Scripts/ko/knockout-2.2.0.debug.js"></script>
+<script src="/Scripts/ko/knockout.validation.debug.js"></script>
+
+    <script src="/Scripts/amplify.store.js"></script>
+<script src="/Scripts/mapping/GeoCoder.js"></script>
+<script src="/Scripts/mapping/gmap3.js"></script>
+<script src="/Scripts/mapping/GMapping.js"></script>
+<script src="/Scripts/mapping/UserLocation.js"></script>
+<script src="/Scripts/Utility/Common.js"></script>
+
+    <script src="/Scripts/modernizr-2.7.1.js"></script>
+
+    
+    
+</head>
+<body>
+    <div class="wrapper">
+        
+
+
+<link href="/shared/content/bootstrap/bootstrap-dialog.css" rel="stylesheet"/>
+<link href="/shared/content/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+
+<link href="/shared/content/TempGlobal/www.css" rel="stylesheet"/>
+<link href="/shared/content/Global.css" rel="stylesheet"/>
+
+<script src="/shared/scripts/messagecenter.js"></script>
+<script src="/shared/Content/TempGlobal/www.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Bold:300,400,700|Roboto:300,400,500,700" />
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700|Roboto:300,400,500,700" />
+<link rel="stylesheet" href="/shared/Content/font-awesome/css/font-awesome.min.css">
+
+<script type="text/javascript">
+    var siteId = 'UA-7778412-2';
+</script>
+
+<div style="padding-bottom: 15px;">
+    <div id="pageTopBox">
+        <div class="container">
+            
+
+
+<ul id="pageTopLinks" class="workforcelinks">
+    <li>
+        <a data-toggle="dropdown" href="#">Choose Country</a>
+        <ul>
+            <li><a href='http://www.expresspros.com'>US-English</a></li>
+            <li><a href='http://www.expresspros.com/ca/'>Canadian-English</a></li>
+            <li><a href='http://www.expresspros.co.za/'>South African-English</a></li>
+        </ul>
+    </li>
+    <li><a href="/account">My Account</a></li>
+</ul>
+<ul id="pageTopLinksLeft">
+    <li><a href='https://apply.expresspros.com'>Apply Now</a></li>
+</ul>
+        </div>
+    </div>
+    <div id="wrap">
+        <div class='home-nav'>
+            <div id="UxWrapPanel">
+                <div id="theNav" role="navigation" class="navbar navbar-default navbar-fixed-top at-the-top" style="background-color: transparent;">
+                    <div class="container main-sticky-nav">
+                        <div class="navbar-header">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" onclick="NavigationMenu.Main.ShowNavigationMenu($('div.navbar-collapse').html(), true, false);" >
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            <a id="UxSmallLogoLink" class="navbar-brand" href="http://www.expresspros.com/">
+                                <img id="UxSmallLogo" src="/shared/content/tempglobal/small-logo.png" class="post-login" />
+                            </a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            
+<ul class="nav navbar-nav navbar-right">
+    <li class='dropdown'>
+        <a href='#' class='dropdown-toggle primary-nav' data-toggle='dropdown'>Job Seekers <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">Find a Job & Apply</li>
+            <li><a href='https://jobs.expresspros.com/search'>Search Jobs</a></li>
+            <li><a href='https://workforce.expresspros.com'>Create or Access an Account</a></li>
+            <li><a href='https://apply.expresspros.com'>Submit an Application</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Information for Job Seekers</li>
+            <li><a href='http://www.expresspros.com/Job-Seekers/Default.aspx'>Job Seekers</a></li>
+            <li><a href='http://www.expresspros.com/Job-Seekers/Types-of-Jobs/Default.aspx'>Types of Jobs</a></li>
+            <li><a href='http://www.expresspros.com/Job-Seekers/Hiring-Process/Default.aspx'>Hiring Process</a></li>
+            <li><a href='http://www.expresspros.com/Job-Seekers/Employee-Benefits/Default.aspx'>Employee Benefits</a></li>
+            <li><a href='http://www.expresspros.com/Job-Seekers/Career-Development/Default.aspx'>Career Development</a></li>
+            <li><a href='http://www.expresspros.com/Job-Seekers/FAQs/Default.aspx'>FAQs</a></li>
+        </ul>
+    </li>
+    <li class='dropdown'>
+        <a href='#' class='dropdown-toggle primary-nav' data-toggle='dropdown'>Associates <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href='https://workforce.expresspros.com'>Associate Sign-In</a></li>
+            <li><a href='http://www.expresspros.com/Associates/Default.aspx'>Associate Forms</a></li>
+        </ul>
+    </li>
+    <li class='dropdown'>
+        <a href='#' class='dropdown-toggle primary-nav' data-toggle='dropdown'>Employers <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href='http://www.expresspros.com/Employers/Default.aspx'>Employers</a></li>
+            <li><a href='http://www.expresspros.com/Employers/Workforce-Solutions/Default.aspx'>Workforce Solutions</a></li>
+            <li><a href='http://www.expresspros.com/Employers/Candidate-Recruitment-Process/Default.aspx'>Candidate Recruitment Process</a></li>
+            <li><a href='http://www.expresspros.com/Employers/Workforce-Management-Tools/Default.aspx'>Workforce Management Tools</a></li>
+            <li><a href='http://www.expresspros.com/Employers/Employer-Resources/Default.aspx'>Employer Resources</a></li>
+            <li><a href='https://workforce.expresspros.com/turnovercalculator'>Turnover Calculator</a></li>
+        </ul>
+    </li>
+    <li class=''>
+        <a href='https://workforce.expresspros.com/locations' class='primary-nav' data-toggle=''>Locations </a>
+    </li>
+
+    <li class='dropdown'>
+        <a href='#' class='dropdown-toggle primary-nav' data-toggle='dropdown'>Newsroom <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href='http://www.expresspros.com/Newsroom/Newsroom.aspx'>Newsroom</a></li>
+            <li><a href='http://www.expresspros.com/Newsroom/America-Employed.aspx'>America Employed</a></li>
+        </ul>
+    </li>
+
+    <li class='dropdown'>
+        <a href='#' class='dropdown-toggle primary-nav' data-toggle='dropdown'>About Us <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href='http://www.expresspros.com/About-Us/Default.aspx'>About Us</a></li>
+            <li><a href='http://www.expresspros.com/About-Us/Leadership/Express-Leadership.aspx'>Express Leadership</a></li>
+            <li><a href='http://www.expresspros.com/About-Us/Community-Involvement/Default.aspx'>Community Involvement</a></li>
+        </ul>
+    </li>
+    <li class='dropdown mobile-only-nav search-hide'>
+        <a id="applymobile" href='https://apply.expresspros.com' class='primary-nav' data-toggle=''>Apply Now </a>
+    </li>
+    
+    <li class='dropdown mobile-only-nav search-hide'>
+        <a href='#' class='dropdown-toggle primary-nav smalltext' data-toggle='dropdown'>Country <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href='http://www.expresspros.com'>US-English</a></li>
+            <li><a href='http://www.expresspros.com/ca'>Canadian-English</a></li>
+            <li><a href='http://www.expresspros.co.za'>South African-English</a></li>
+        </ul>
+    </li>
+    <li class='dropdown mobile-only-nav search-hide'>
+            <a href='#' class='dropdown-toggle primary-nav smalltext' data-toggle='dropdown'>Sign In <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a href='https://workforce.expresspros.com'>Sign In</a></li>
+            </ul>
+    </li>
+</ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(window).load(function () {
+                    var browser = 'Chrome';
+                    if (browser == "IE") {
+                        var userLoggedIn = 'False';
+                        if (userLoggedIn == "True") {
+                            ShowStickyNav();
+                        }
+                    } else {
+                        if ($('body').hasClass('ektron-ux-showToolbar')) {
+                            ShowStickyNav();
+                        }
+                    }
+                });
+
+                function ShowStickyNav() {
+                    $("div#" + 'theNav').css('padding-top', '47px');
+                    $(window).scroll(function () {
+                        if ($(window).scrollTop() == 0) {
+                            $("div#" + 'theNav').css('padding-top', '47px');
+                        } else {
+                            $("div#" + 'theNav').removeAttr('style');
+                        }
+                    });
+                }
+            </script>
+        </div>
+        <div id="middleContainer">
+            <div class="container page-logo" style="margin-top: 17px;">
+                <a id="UXContainerSmallLogoLink" href="http://www.expresspros.com/"><img id="Masthead_UxContainerSmallLogo" alt="HomeLogo" src="/shared/content/tempglobal/small-logo.png" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    
+    var ws = $("#whitespace");
+    var topnav = $(".container.main-sticky-nav");
+
+    $(window).scroll(function () {
+        if (ws) {
+            if ($(this).scrollTop() > 10) {
+                ws.addClass("whitespace");
+                topnav.css("background-color", "#fff");
+            }
+            else {
+                ws.removeClass("whitespace");
+                topnav.css("background-color", "transparent");
+                $("#wssnav").css("margin-top", "0");
+            }
+        }
+    });
+
+</script>
+        <link href="/Content/site.css" rel="stylesheet"/>
+
+        <div class="wrappercontainer">
+            <div id="main">
+                <div class="container">
+                    
+
+<script src="/Scripts/Locations/LocatorViewModel.js"></script>
+
+<link href="/content/locations/locator.css" rel="stylesheet"/>
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Office List</title>
+</head>
+<body>
+    <h3>
+        Alabama Locations
+    </h3>
+    <div class="container-fluid">
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Auburn</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>2436 East University Drive</div>
+                        <div>Suite 2203-04</div>
+                        <div>Auburn, AL 36830</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(334) 246-3910" class="no-link">(334) 246-3910</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:Jobs.AuburnAL@ExpressPros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/auburnal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/auburnal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Birmingham (North)</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>1423 Gadsden Highway</div>
+                        <div>Suite 115</div>
+                        <div>Birmingham, AL 35235</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(205) 547-2849" class="no-link">(205) 547-2849</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:Jobs.NorthBirminghamAL@ExpressPros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/nbirminghamal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/nbirminghamal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Birmingham (South)</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>200 Cahaba Park Circle</div>
+                        <div>Suite 130</div>
+                        <div>Birmingham, AL 35242</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(205) 981-1141" class="no-link">(205) 981-1141</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:jobs.birminghamalsouth@expresspros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/sbirminghamal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/sbirminghamal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Birmingham (West)</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>2321 John Hawkins Parkway</div>
+                        <div>Suite 105</div>
+                        <div>Hoover, AL 35244</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(205) 610-8260" class="no-link">(205) 610-8260</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:Jobs.BirminghamALWest@ExpressPros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/wbirminghamal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/wbirminghamal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Dothan</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>3702 Ross Clark Circle</div>
+                        <div>Suite 3</div>
+                        <div>Dothan, AL 36303</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(334) 671-1315" class="no-link">(334) 671-1315</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:jobs.dothanal@expresspros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/dothanal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/dothanal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Huntsville</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>5650 Sanderson Street</div>
+                        <div>Suite P</div>
+                        <div>Huntsville, AL 35805</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(256) 721-5627" class="no-link">(256) 721-5627</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:jobs.huntsvilleal@expresspros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/huntsvilleal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/huntsvilleal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Mobile</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>3662 Dauphin Street</div>
+                        <div>Suite B</div>
+                        <div>Mobile, AL 36608</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(251) 476-8210" class="no-link">(251) 476-8210</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:jobs.mobileal@expresspros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/mobileal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/mobileal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Montgomery</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>5729 Carmichael Parkway</div>
+                        <div></div>
+                        <div>Montgomery, AL 36117</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(334) 651-0772" class="no-link">(334) 651-0772</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:Jobs.MontgomeryAL@ExpressPros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/montgomeryal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/montgomeryal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Summerdale</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>20210 State Highway 59</div>
+                        <div>Suite 3</div>
+                        <div>Summerdale, AL 36580</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(251) 989-5500" class="no-link">(251) 989-5500</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:Jobs.SummerdaleAL@ExpressPros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/summerdaleal">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/summerdaleal/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+            <div class="row location-item" style="padding-bottom: 15px;">
+                <h4>Tuscaloosa</h4>
+                <div class="col-md-4 col-sm-4 col-xs-4 summary">
+                    <div>
+                        <div>2818 Lurleen B Wallace Boulevard</div>
+                        <div></div>
+                        <div>Northport, AL 35476</div>
+                    </div>
+                    <div>
+                        <b>Phone: </b><a href="tel:(205) 758-0080" class="no-link">(205) 758-0080</a>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 links">
+                    <div>
+ <a href="mailto:jobs.tuscaloosaal@expresspros.com">Email</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/tuscaloosa">Visit Site</a>                     </div>
+                    <div>
+ <a href="http://www.expresspros.com/tuscaloosa/job-openings.aspx">View Jobs</a>                     </div>
+                </div>
+            </div>
+    </div>
+</body>
+</html>
+
+                </div>
+            </div>
+        </div>
+        
+
+<div id="footer" class="footer">
+    <div class="container">
+        <div class="col-md-3">
+            <a id="UxFooterLink" href="http://www.expresspros.com/">
+                <img id="footer-logo" alt="Express Employment Professionals" src="/shared/content/tempglobal/Express_Logo_Footer.png" />
+            </a>
+            <ul id="footer-socials">
+                <li>
+                    <a href="https://www.facebook.com/ExpressEmploymentProfessionals" target="_blank">
+                        <img id="ctl00_uxFooter_uxSocialProfileLinks_ctl00_uxSocialProfileLinkImage" src="/shared/content/tempglobal/Facebook_Icon_Footer.png" alt="Facebook" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/expresspros/" target="_blank">
+                        <img id="ctl00_uxFooter_uxSocialProfileLinks_ctl01_uxSocialProfileLinkImage" src="/shared/content/tempglobal/Twitter_Icon_Footer.png" alt="Twitter" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/company/express-employment-professionals_163746?trk=biz-companies-cym" target="_blank">
+                        <img id="ctl00_uxFooter_uxSocialProfileLinks_ctl02_uxSocialProfileLinkImage" src="/shared/content/tempglobal/LinkedIn_Icon_Footer.png" alt="Linked In" />
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.youtube.com/user/expressep" target="_blank">
+                        <img id="ctl00_uxFooter_uxSocialProfileLinks_ctl03_uxSocialProfileLinkImage" src="/shared/content/tempglobal/YouTube_Icon_Footer.png" alt="Express YouTube Channel" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                
+<div class="col-md-4">
+    <ul class="footer-links">
+        <li><a href="https://jobs.expresspros.com/search">Search Jobs </a></li>
+        <li><a href="https://apply.expresspros.com">Submit an Application </a></li>
+        <li><a href="https://workforce.expresspros.com/locations">Find an Express Location </a></li>
+        <li><a href="http://www.expresspros.com/Job-Seekers/Default.aspx">Job Seekers </a></li>
+        <li><a href="http://www.expresspros.com/Job-Seekers/Types-of-Jobs/Default.aspx">Types of Jobs </a></li>
+    </ul>
+</div>
+<div class="col-md-4">
+    <ul class="footer-links">
+        <li><a href="http://www.expresspros.com/Job-Seekers/Hiring-Process/Default.aspx">Hiring Process </a></li>
+        <li><a href="http://www.expresspros.com/Job-Seekers/Employee-Benefits/Default.aspx">Employee Benefits </a></li>
+        <li><a href="http://www.expresspros.com/Job-Seekers/Career-Development/Default.aspx">Career Development </a></li>
+        <li><a href="http://www.expresspros.com/Job-Seekers/FAQs/Default.aspx">FAQs </a></li>
+        <li><a href="http://www.expresspros.com/Associates/Default.aspx">Express Associate Forms </a></li>
+    </ul>
+</div>
+<div class="col-md-4">
+    <ul class="footer-links">
+        <li><a href="http://www.expresspros.com/About-Us/Default.aspx">About Us </a></li>
+        <li><a href="http://www.expresspros.com/Website-Contact.aspx">Website Contact </a></li>
+        <li class="divider"></li>
+            <li><a href="https://workforce.expresspros.com/account/login">Associate Sign-In</a></li>
+    </ul>
+</div>   
+
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        <ul class="footer-links">
+                            <li class="home-link"></li>
+                        </ul>
+                    </div>
+                    <p class="copyright">
+                        <br />
+                        <span id="ctl00_uxFooter_uxCopyRight">
+                            © 2017 Express Services, Inc.
+                            <br />
+
+                            All rights reserved.
+                            <a href="http://www.expresspros.com/Privacy-Policy.aspx" title="Privacy Policy">Privacy Policy</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<input id="env" name="env" type="hidden" value="HQ" />
+<script>
+    (function ($) {
+        $.extend({
+            getQueryString: function (name) {
+                function parseParams() {
+                    var params = {},
+                        e,
+                        a = /\+/g,  // Regex for replacing addition symbol with a space
+                        r = /([^&=]+)=?([^&]*)/g,
+                        d = function (s) { return decodeURIComponent(s.replace(a, " ")); },
+                        q = window.location.search.substring(1);
+
+                    while (e = r.exec(q))
+                        params[d(e[1])] = d(e[2]);
+
+                    return params;
+                }
+
+                if (!this.queryStringParams)
+                    this.queryStringParams = parseParams();
+
+                return this.queryStringParams[name];
+            }
+        });
+    })(jQuery);
+
+
+</script>
+<script src="/shared/scripts/expresstracker.js"></script>
+
+
+    </div>
+
+</body>
+</html>
