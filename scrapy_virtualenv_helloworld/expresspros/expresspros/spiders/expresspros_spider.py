@@ -6,11 +6,22 @@ class ExpressprosSpider(scrapy.Spider):
     # allowed_domain = ["https://www.expresspros.com/"]
     # start_urls = ["https://workforce.expresspros.com/locations/state/Alabama"]
 
+    '''
+        Spider arguments are passed while running the crawl command using the -a option.
+        You would use *args when you're not sure how many arguments might be passed to your function
+        Similarly, **kwargs allows you to handle named arguments that you have not defined in advance
+
+        For example:
+        scrapy crawl myspider -a category='mycategory' -a domain='example.com'
+        scrapy crawl expresspros -a domain='https://workforce.expresspros.com/locations/state/Alabama' -o myjsontest.json
+
+        # https://stackoverflow.com/questions/15611605/how-to-pass-a-user-defined-argument-in-scrapy-spider
+        # https://doc.scrapy.org/en/latest/topics/spiders.html#spider-arguments
+    '''
     def __init__(self, domain='', *args,**kwargs):
         super(ExpressprosSpider, self).__init__(*args, **kwargs)
         self.start_urls = [domain]
-        # scrapy crawl myspider -a category='mycategory' -a domain='example.com'
-        # scrapy crawl expresspros -a domain='https://workforce.expresspros.com/locations/state/Alabama' -o myjsontest.json
+
 
     # urls from terminal
     # scrapy crawl myspider -a domain="http://www.example.com"
