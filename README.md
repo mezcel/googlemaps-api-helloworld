@@ -4,7 +4,6 @@
 
 ### Current Dev Stop Point
 
-* Json Input is not implemented yet
 * I am running Scrapy in a virtual environment to generate my .CSV file. ``` If you don't use have Scrapy installed, ignore that feature of this Repo ``` Its a Linux thing... :fa-thumbs-up: :fa-meh-o:
 * I have not made the json feature yet, the holdup is related to what i am doing with Scrapy
 * The JS script is a bit of an eyesore, but it works fine and it is intelligible if you understand Google API.

@@ -45,24 +45,24 @@ Note: ```myscrappydev``` is a name i chose
 
 #### Linux Terminal (create spider and run):
 
-Create new repo in the virtual environment
+* Official guidance: ``` https://doc.scrapy.org/en/0.12/topics/commands.html#std:command-crawl ```
 
-``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy startproject [my_crawler_name] ``` In this git my project is expresspros
+    ``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy startproject [my_crawler_name] ``` In this git my project is expresspros
 
-Open directory in a text editor, I like to use Atom
+* Open directory in a text editor, I like to use Atom
 
-``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy atom ```
+    ``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy atom ```
 
-Create file ``` [my_crawler_name]/[myspider_name].py ``` similar to what i have in git. In this git, it is ``` expresspros/spiders/expresspros_spider.py```
+* Create file ``` [my_crawler_name]/[myspider_name].py ``` similar to what i have in git. In this git, it is ``` expresspros/spiders/expresspros_spider.py```
 
-Edit file ``` expresspros/items.py ``` similar to what i have in git
+* Edit file ``` expresspros/items.py ``` similar to what i have in git
 
-Run my crawler
+* Run my crawler
 
-``` (myscrapydev)  user@computername ~/myscrapydev $ cd [where_ever_i_stored_it] ```
+    ``` (myscrapydev)  user@computername ~/myscrapydev $ cd [where_ever_i_stored_it] ```
 
-```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.csv -t csv```
+    ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.csv -t csv```
 
-or
+    or
 
-```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.json -t json```
+    ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.json -t json```
