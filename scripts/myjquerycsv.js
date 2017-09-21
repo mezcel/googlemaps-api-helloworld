@@ -30,6 +30,7 @@ $(document).ready(function(){
                 var csvData = event.target.result;
                 data = $.csv.toArrays(csvData);
                 locations = data; //locations var pulled from scripts/myScript.js
+                console.log(locations);
                 if (data && data.length > 0)
                 {
                     alert('Imported -' + data.length + '- waypoints successfully!');

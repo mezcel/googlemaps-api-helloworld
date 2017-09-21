@@ -7,16 +7,16 @@ var map;
 
 
 function initialize(){
-    map = new google.maps.Map(document.getElementById("map_canvas"),
-    {
+    map = new google.maps.Map(document.getElementById("map_canvas"),{
         center: new google.maps.LatLng(30.836582, -83.978781),
         /* regional center point initial view */
         zoom: 7,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+
     geocoder = new google.maps.Geocoder();
-    for (i = 0; i < locations.length; i++)
-    {
+
+    for (i = 0; i < locations.length; i++){
         geocodeAddress(locations, i);
     }
 }
@@ -67,11 +67,10 @@ function geocodeAddress(locations, i){
 }
 
 function infoWindow(marker, map, title, address, url, phone, email, purpose, hours, about) {
-    google.maps.event.addListener(marker, 'click', function()
-    {
-        var html = "<div><h3>Title: " + title + "</h3><p>address: " + address + "<br></div><a href='" + url + "'>weblink</a></p><p>phone: " + phone + "</p><p>email: " + email + "</p><p>purpose: " + purpose + "</p><p>hours: " + hours + "</p><p>about: " + about + "</p></div>";
-        iw = new google.maps.InfoWindow(
-        {
+    google.maps.event.addListener(marker, 'click', function(){
+        //this is really hacky... but it get me moveing fowarward with testing
+        var html = "<div><h3>Title: " + title + "</h3><p><b>Street Address:</b> " + address + "</p><p><b>Link: </b><a href='"+url+"' title='"+url+"' class='button' target='_blank'>"+url+"</a></p><p><b>phone:</b> " + phone + "</p><p><b>email:</b> " + email + "</p><p><b>purpose:</b> " + purpose + "</p><p><b>hours:</b> " + hours + "</p><p><b>about:</b> " + about + "</p></div>";
+        iw = new google.maps.InfoWindow({
             content: html,
             maxWidth: 350
         });
@@ -113,6 +112,7 @@ function populateDropdownLists() {
     var mytokens;
     var options = locations;
     var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
+
     console.log("Filter Check:", myFilterVar);
     switch(myFilterVar) {
         case 'All':
@@ -149,7 +149,6 @@ function chartCourse(){
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-
     // myWeatherLayer(); // this function is not working
     calculateAndDisplayRoute(directionsService, directionsDisplay);
 
@@ -162,6 +161,7 @@ function chartCourse(){
 function selectTextWaypoint1(wptOpt){
     document.getElementById("selectpoint1text").value = wptOpt.value;
 }
+
 function selectTextWaypoint2(wptOpt){
     document.getElementById("selectpoint2text").value = wptOpt.value;
 }
@@ -181,27 +181,112 @@ function toggleCourseDir(x) {
 	}
 }
 
-// UNDER_CONSTRUCTION !!!
+// UNDER_CONSTRUCTION (json feature) !!!
 $(document).ready(function(){
     // The event listener for the file upload (JSON)
     // i took a different approach compared to my CSV input
+
     // UNDER_CONSTRUCTION !!!
     var myJSONlocation;
 
+    var expressprosScrapyJSONdropdowns = function(data){
+        /*
+            this is for the json, but i want to have it resemble the csv and the [var locations] used in path: scripts/myjquerycsv.js
+                Array [ Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8]]
+                var title = locations[i][0];
+                var address = locations[i][1];
+                var url = locations[i][2];
+                var phone = locations[i][3];
+                var email = locations[i][4];
+                var purpose = locations[i][5];
+                var hours = locations[i][6];
+                var about = locations[i][7];
+            json is better than csv, but csv is the weakest link, i want to keep the system csv friendly while in testing phase
+            csv format: "title","address","url","phone","email","purpose","hours","about"
+        */
+        var mytokens;
+        var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
+
+        console.log("Filter Check:", myFilterVar);
+        console.log("# of WPTs: ", data.length);
+        // use this if i want to see the length of the object within array: Object.keys(data[0]).length
+        switch(myFilterVar) {
+            case 'All':
+                for (var i = 0; i < data.length; i++){
+                    var tempAdrstr = data[i].streetAddress[0] + " " + data[i].streetAddress[1] + " " + data[i].streetAddress[2];
+                    tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
+
+                    var tempArr = new Array (
+                        data[i].title[0],
+                        tempAdrstr,
+                        data[i].jobsurl[0],
+                        data[i].phone[0],
+                        data[i].email[0],
+                        "Scrapy did not search for this field/parameter.", //purpose
+                        "Scrapy did not search for this field/parameter.", //hours
+                        data[i].url[0]
+                    );
+                    locations.push(tempArr); //push an array into an array for my geocode array var locations
+
+                    mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
+                    $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                    $("#selectpoint1").selectpicker("refresh");
+
+                    $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                    $("#selectpoint2").selectpicker("refresh");
+
+                    console.log(data[i].title[0]);
+                }
+
+                break;
+
+            default:
+                for (var i = 0; i < data.length; i++){
+                    if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
+                        var tempAdrstr = data[i].streetAddress[0] + " " + data[i].streetAddress[1] + " " + data[i].streetAddress[2];
+
+                        var tempArr = new Array (
+                            data[i].title[0],
+                            tempAdrstr,
+                            data[i].jobsurl[0],
+                            data[i].phone[0],
+                            data[i].email[0],
+                            "Scrapy did not search for this field/parameter.", //hours
+                            data[i].url[0]
+                        );
+                        locations.push(tempArr); //push an array into an array for my geocode array var locations
+
+                        mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
+                        $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                        $("#selectpoint1").selectpicker("refresh");
+
+                        $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                        $("#selectpoint2").selectpicker("refresh");
+
+                        console.log(data[i].title[0]);
+                    }
+                }
+                initialize();
+                break;
+        }
+    }
+
     $('#jsonFileUpload').change( function(event) {
         var tmppath = URL.createObjectURL(event.target.files[0]); //temporary file location for path uploading
+
         $.getJSON(tmppath, function(data) {
-            console.log(data, myJSONarr);//output your data to console
-            /*
-                Scrapy makes the following json format
-                Array [ Object, Object, Object, Object, Object, Object, Object, Object, Object, Object ]
-            */
+            if (data && data.length > 0)
+            {
+                expressprosScrapyJSONdropdowns(data);
+                initialize(); //populate map with points
+                alert('Imported - ' + Object.keys(data[0]).length + ' - waypoints successfully!');
+                location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
+            }
+            else
+            {
+                alert('Issues with the json format or the file itself!');
+                return;
+            }
         });
-
-        var options = data; // i need an array format optimized for a for loop
-        for (var i = 0; i < options.length; i++){
-            // populate my dropdown list
-        }
-
     });
 });
