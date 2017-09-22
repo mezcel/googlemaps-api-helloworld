@@ -61,8 +61,8 @@ Note: ```myscrappydev``` is a name i chose
 
     ``` (myscrapydev)  user@computername ~/myscrapydev $ cd [where_ever_i_stored_it] ```
 
-    ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.csv -t csv```
+    ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -a domain='some_https_url' -o ../desired_path_dir/filename.csv -t csv```
 
     or
 
-    ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -o file.json -t json```
+    ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -a domain='some_https_url' -o ../desired_path_dir/filename.json -t json```
