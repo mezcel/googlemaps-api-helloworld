@@ -88,3 +88,10 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+# I want to apply strip() all all fields regarless if it is need or not
+# example:
+# 'job': result.css('a.job-link::text').extract_first() ''' not needed
+# vs
+# result.css('div.-name::text').extract_first().strip() ''' is needed
+FEED_EXPORT_ENCODING = 'utf-8'
