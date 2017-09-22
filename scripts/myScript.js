@@ -187,8 +187,6 @@ $(document).ready(function(){
     // i took a different approach compared to my CSV input
 
     // UNDER_CONSTRUCTION !!!
-    var myJSONlocation;
-
     var expressprosScrapyJSONdropdowns = function(data){
         /*
             this is for the json, but i want to have it resemble the csv and the [var locations] used in path: scripts/myjquerycsv.js
@@ -281,7 +279,7 @@ $(document).ready(function(){
                 console.log("inputting json");
                 expressprosScrapyJSONdropdowns(data);
                 initialize(); //populate map with points
-                alert('Imported - ' + Object.keys(data[0]).length + ' - waypoints successfully!');
+                alert('Imported - ' + data.length + ' - waypoints successfully!');
                 location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
             }
             else{
