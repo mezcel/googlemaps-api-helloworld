@@ -251,6 +251,7 @@ $(document).ready(function(){
             default:
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
+                        
                         // error catch and clean for non string generated address values
                         var tempAdrstr = "";
                         for(var n=0; n<2; n+=1){
@@ -287,17 +288,14 @@ $(document).ready(function(){
                 }
                 break;
         }
-
-
     }
 
     $('#jsonFileUpload').change( function(event) {
         var tmppath = URL.createObjectURL(event.target.files[0]); //temporary file location for path uploading
         $.getJSON(tmppath, function(data) {
             if (data && data.length > 0){
-                console.log(data);
+                console.log("object debug: ", data); //general obj debug
                 expressprosScrapyJSONdropdowns(data);
-                console.log(locations);
                 initialize(); //populate map with points
                 alert('Imported - ' + data.length + ' - waypoints successfully!');
                 location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
