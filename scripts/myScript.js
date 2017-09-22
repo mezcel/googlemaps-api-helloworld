@@ -211,19 +211,33 @@ $(document).ready(function(){
         switch(myFilterVar) {
             case 'All':
                 for (var i = 0; i < data.length; i++){
-                    var tempAdrstr = data[i].streetAddress[0] + " " + data[i].streetAddress[1] + " " + data[i].streetAddress[2];
+
+                    var tempAdrstr = "";
+
+                    //error catch for non string generated address values
+                    for(var n=0; n<2; n+=1){
+                        if (typeof data[i].streetAddress[n] !== 'string'){
+                            data[i].streetAddress[n] =  " "; // this is for short address
+                        }
+
+                        tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
+                    }
+
+                    //var tempAdrstr = data[i].streetAddress[0].toString() + " " + data[i].streetAddress[1].toString() + " " + data[i].streetAddress[2].toString();
                     tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
+                    tempAdrstr = tempAdrstr.toString();
 
                     var tempArr = new Array (
-                        data[i].title[0],
+                        data[i].title[0].toString(),
                         tempAdrstr,
-                        data[i].jobsurl[0],
-                        data[i].phone[0],
-                        data[i].email[0],
+                        data[i].jobsurl[0].toString(),
+                        data[i].phone[0].toString(),
+                        data[i].email[0].toString(),
                         "Scrapy did not search for this field/parameter.", //purpose
                         "Scrapy did not search for this field/parameter.", //hours
-                        data[i].url[0]
+                        data[i].url[0].toString()
                     );
+
                     locations.push(tempArr); //push an array into an array for my geocode array var locations
 
                     mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
@@ -242,6 +256,7 @@ $(document).ready(function(){
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
                         var tempAdrstr = data[i].streetAddress[0] + " " + data[i].streetAddress[1] + " " + data[i].streetAddress[2];
+                        tempAdrstr = tempAdrstr.toString();
 
                         var tempArr = new Array (
                             data[i].title[0],
@@ -249,6 +264,7 @@ $(document).ready(function(){
                             data[i].jobsurl[0],
                             data[i].phone[0],
                             data[i].email[0],
+                            "Scrapy did not search for this field/parameter.", //purpose
                             "Scrapy did not search for this field/parameter.", //hours
                             data[i].url[0]
                         );
@@ -264,20 +280,19 @@ $(document).ready(function(){
                         console.log(data[i].title[0]);
                     }
                 }
-                initialize();
                 break;
         }
+
+
     }
 
     $('#jsonFileUpload').change( function(event) {
-        console.log("start json");
         var tmppath = URL.createObjectURL(event.target.files[0]); //temporary file location for path uploading
-        console.log("start json tmppath:", tmppath);
         $.getJSON(tmppath, function(data) {
-            console.log("$.getJSON(tmppath, function(data)", data);
             if (data && data.length > 0){
-                console.log("inputting json");
+                console.log(data);
                 expressprosScrapyJSONdropdowns(data);
+                console.log(locations);
                 initialize(); //populate map with points
                 alert('Imported - ' + data.length + ' - waypoints successfully!');
                 location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
@@ -286,8 +301,6 @@ $(document).ready(function(){
                 alert('Issues with the json format or the file itself!');
                 return;
             }
-            console.log("$.getJSON(tmppath, function(data)", data);
         });
-        console.log("exit json");
     });
 });
