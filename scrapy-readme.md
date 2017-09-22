@@ -45,7 +45,7 @@ Note: ```myscrappydev``` is a name i chose
 
 #### Linux Terminal (create spider and run):
 
-* Official guidance: ``` https://doc.scrapy.org/en/0.12/topics/commands.html#std:command-crawl ```
+* [Official guidance ](https://doc.scrapy.org/en/0.12/topics/commands.html#std:command-crawl)
 
     ``` (myscrapydev)  user@computername ~/myscrapydev $ scrapy startproject [my_crawler_name] ``` In this git my project is expresspros
 
