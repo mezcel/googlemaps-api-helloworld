@@ -4,9 +4,12 @@ import scrapy
 # [Scrapy Tutorial](https://doc.scrapy.org/en/1.3/intro/tutorial.html)
 class StackOverflowSpider(scrapy.Spider):
     name = 'stackoverflow'
+    allowed_domain = ["https://stackoverflow.com/"]
     start_urls = [
         'https://stackoverflow.com/jobs?sort=p&l=Florida'
     ]
+    # https://stackoverflow.com/jobs?sort=p&l=Florida
+    # &ms=Junior&mxs=MidLevel
     # https://stackoverflow.com/jobs?sort=p&l=Florida&d=20&u=Miles&c=usd&mxs=MidLevel&j=permanent&j=contract&j=internship&b=HighResponse
 
     '''
@@ -15,21 +18,20 @@ class StackOverflowSpider(scrapy.Spider):
     '''
 
     def parse(self, response):
-        for result in response.css('.-job-summary'):
+        for result in response.css('div.main div.-job-summary'):
             yield {
-                'job': result.css('a.job-link::text').extract_first().strip(),
+                'job': result.css('a.job-link::text').extract_first(),
                 'title': result.css('a.job-link::attr(title)').extract_first(),
                 'link': result.css('a.job-link::attr(href)').extract_first(),
-
                 'company': result.css('div.-name::text').extract_first().strip(),
                 'location': result.css('div.-location::text').extract_first().replace('- \r\n', '').strip(),
                 'posted': result.css('p.-posted-date.g-col::text').extract_first().strip(),
-                'skills': result.css('p > a.post-tag.job-link.no-tag-menu::text').extract()
+                'skills': result.css('p > a.post-tag.job-link.no-tag-menu::text').extract(),
             }
+
         # follow pagination links
-        '''
-        next_page = response.css('.pagination .test-pagination-next::attr(href)').extract_first()
+        next_page = response.css('div.pagination > a.job-link::attr(href)').extract()
+        next_page = next_page[1]
         if next_page is not None:
             next_page = response.urljoin(next_page)
-            yield scrapy.Request(next_page, callback=self.parse)
-        '''
+            yield scrapy.Request(next_page, self.parse)
