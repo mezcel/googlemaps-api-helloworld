@@ -6,7 +6,8 @@ class StackOverflowSpider(scrapy.Spider):
     name = 'stackoverflow'
     allowed_domain = ["https://stackoverflow.com/"]
     start_urls = [
-        'https://stackoverflow.com/jobs?sort=p&l=Florida'
+        'https://stackoverflow.com/jobs?sort=p&l=Florida',
+        'https://stackoverflow.com/jobs?sort=p&l=Georgia'
     ]
     # https://stackoverflow.com/jobs?sort=p&l=Florida
     # &ms=Junior&mxs=MidLevel
@@ -14,9 +15,8 @@ class StackOverflowSpider(scrapy.Spider):
 
     '''
         Copy Outer html from the inspect feature to see the class attr
-        <a class="post-tag job-link no-tag-menu" href="/jobs/developer-jobs-using-java">java</a>
+        Example: <a class="post-tag job-link no-tag-menu" href="/jobs/developer-jobs-using-java">java</a>
     '''
-
     def parse(self, response):
         for result in response.css('div.main div.-job-summary'):
             yield {
@@ -26,12 +26,17 @@ class StackOverflowSpider(scrapy.Spider):
                 'company': result.css('div.-name::text').extract_first().strip(),
                 'location': result.css('div.-location::text').extract_first().replace('- \r\n', '').strip(),
                 'posted': result.css('p.-posted-date.g-col::text').extract_first().strip(),
-                'skills': result.css('p > a.post-tag.job-link.no-tag-menu::text').extract(),
+                'skills': result.css('p > a.post-tag.job-link.no-tag-menu::text').extract()
             }
 
-        # follow pagination links
+        '''
+            Sep 2017 the pagination links
+            i fealt it relevant to scrap just those 3 following links
+        '''
         next_page = response.css('div.pagination > a.job-link::attr(href)').extract()
-        next_page = next_page[1]
-        if next_page is not None:
-            next_page = response.urljoin(next_page)
+        page_i_want = 'https://stackoverflow.com/jobs?sort=p&l=Florida&pg=2'
+        mycounter = 1
+        if next_page[mycounter + 1]:
+            mycounter = mycounter + 1
+            next_page = response.urljoin(next_page[mycounter])
             yield scrapy.Request(next_page, self.parse)
