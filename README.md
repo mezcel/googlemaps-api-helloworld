@@ -5,7 +5,6 @@
 ### Current Dev Stop Point
 
 * I am running Scrapy in a virtual environment to generate my .CSV file. ``` If you don't use have Scrapy installed, ignore that feature of this Repo ``` Its a Linux thing... :fa-thumbs-up: :fa-meh-o:
-* I have not made the json feature yet, the holdup is related to what i am doing with Scrapy
 * The JS script is a bit of an eyesore, but it works fine and it is intelligible if you understand Google API.
 * * <b>Note</b>: <i>I would love to know how to "group cluster" using street name address. Google API seems to only like LatLong for that feature. I looked into "Reverse Geocode", but that is not doing the trick at the moment either.</i>
 
