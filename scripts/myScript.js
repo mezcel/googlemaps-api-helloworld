@@ -212,18 +212,14 @@ $(document).ready(function(){
             case 'All':
                 for (var i = 0; i < data.length; i++){
 
+                    // error catch and clean for non string generated address values
                     var tempAdrstr = "";
-
-                    //error catch for non string generated address values
                     for(var n=0; n<2; n+=1){
                         if (typeof data[i].streetAddress[n] !== 'string'){
                             data[i].streetAddress[n] =  " "; // this is for short address
                         }
-
                         tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
                     }
-
-                    //var tempAdrstr = data[i].streetAddress[0].toString() + " " + data[i].streetAddress[1].toString() + " " + data[i].streetAddress[2].toString();
                     tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
                     tempAdrstr = tempAdrstr.toString();
 
@@ -255,19 +251,28 @@ $(document).ready(function(){
             default:
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
-                        var tempAdrstr = data[i].streetAddress[0] + " " + data[i].streetAddress[1] + " " + data[i].streetAddress[2];
+                        // error catch and clean for non string generated address values
+                        var tempAdrstr = "";
+                        for(var n=0; n<2; n+=1){
+                            if (typeof data[i].streetAddress[n] !== 'string'){
+                                data[i].streetAddress[n] =  " "; // this is for short address
+                            }
+                            tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
+                        }
+                        tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
                         tempAdrstr = tempAdrstr.toString();
 
                         var tempArr = new Array (
-                            data[i].title[0],
+                            data[i].title[0].toString(),
                             tempAdrstr,
-                            data[i].jobsurl[0],
-                            data[i].phone[0],
-                            data[i].email[0],
+                            data[i].jobsurl[0].toString(),
+                            data[i].phone[0].toString(),
+                            data[i].email[0].toString(),
                             "Scrapy did not search for this field/parameter.", //purpose
                             "Scrapy did not search for this field/parameter.", //hours
-                            data[i].url[0]
+                            data[i].url[0].toString()
                         );
+
                         locations.push(tempArr); //push an array into an array for my geocode array var locations
 
                         mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
