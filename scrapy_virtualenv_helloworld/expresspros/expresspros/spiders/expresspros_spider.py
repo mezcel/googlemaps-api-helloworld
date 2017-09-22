@@ -5,7 +5,7 @@ class ExpressprosSpider(scrapy.Spider):
     name = "expresspros"
     # allowed_domain = ["https://www.expresspros.com/"]
     # start_urls = ["https://workforce.expresspros.com/locations/state/Alabama"]
-    
+
     def __init__(self, domain='', *args,**kwargs):
         '''
             Spider arguments are passed while running the crawl command using the -a option.
