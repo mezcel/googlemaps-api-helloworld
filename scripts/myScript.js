@@ -272,21 +272,24 @@ $(document).ready(function(){
     }
 
     $('#jsonFileUpload').change( function(event) {
+        console.log("start json");
         var tmppath = URL.createObjectURL(event.target.files[0]); //temporary file location for path uploading
-
+        console.log("start json tmppath:", tmppath);
         $.getJSON(tmppath, function(data) {
-            if (data && data.length > 0)
-            {
+            console.log("$.getJSON(tmppath, function(data)", data);
+            if (data && data.length > 0){
+                console.log("inputting json");
                 expressprosScrapyJSONdropdowns(data);
                 initialize(); //populate map with points
                 alert('Imported - ' + Object.keys(data[0]).length + ' - waypoints successfully!');
                 location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
             }
-            else
-            {
+            else{
                 alert('Issues with the json format or the file itself!');
                 return;
             }
+            console.log("$.getJSON(tmppath, function(data)", data);
         });
+        console.log("exit json");
     });
 });
