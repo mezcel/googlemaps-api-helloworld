@@ -66,3 +66,5 @@ Note: ```myscrappydev``` is a name i chose
     or
 
     ```(myscrapydev)  user@computername ~/myscrapydev/[where_ever_i_stored_it] $ scrapy crawl expresspros -a domain='some_https_url' -o ../desired_path_dir/filename.json -t json```
+
+    if you are matching my repo path, my desired_path_dir path is ```../../demo-csv-json-scrape/filename.json```
