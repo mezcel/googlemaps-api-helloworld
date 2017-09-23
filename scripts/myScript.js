@@ -191,8 +191,8 @@ $(document).ready(function(){
     // The event listener for the file upload (JSON)
     // i took a different approach compared to my CSV input
 
-    // UNDER_CONSTRUCTION !!!
-    var expressprosScrapyJSONdropdowns = function(data){
+    var scrapeErrorCatch(data) {
+
         /*
             this is for the json, but i want to have it resemble the csv and the [var locations] used in path: scripts/myjquerycsv.js
                 Array [ Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8], Array[8]]
@@ -207,7 +207,48 @@ $(document).ready(function(){
             json is better than csv, but csv is the weakest link, i want to keep the system csv friendly while in testing phase
             csv format: "title","address","url","phone","email","purpose","hours","about"
         */
+
+        // error catch and clean for non string generated address values
+
+        var tempAdrstr = "";
+
+        for(var n=0; n<3; n+=1) {
+            if ((typeof data[i].streetAddress[n] !== 'string') || (data[i].streetAddress[n].length === 0)) {
+                data[i].streetAddress[n] =  " "; // this is for short address
+            }
+            tempAdrstr = tempAdrstr.replace( /  +/g, ' ');
+            tempAdrstr = tempAdrstr.toString();
+            tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
+        }
+
+        if (typeof data[i].streetAddress[0] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[0].push(" "); console.log("\tfound scrape issue: addr0");}
+        if (typeof data[i].streetAddress[1] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[1].push(" "); console.log("\tfound scrape issue: addr1");}
+        if ((typeof data[i].streetAddress[2] !== 'string')||(typeof data[i].streetAddress[2] === undefined)){data[i].streetAddress = [];data[i].streetAddress[2].push(" "); console.log("\tfound scrape issue: addr2");}
+
+        if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
+        if (typeof data[i].phone[0] !== 'string'){data[i].phone = [];data[i].phone.push("n/a");console.log("\tfound scrape issue: phone");}
+        if (typeof data[i].jobsurl[0] !== 'string'){data[i].jobsurl = [];data[i].jobsurl.push("n/a");console.log("\tfound scrape issue: jobsurl");}
+        if (typeof data[i].email[0] !== 'string'){data[i].email = [];data[i].email.push("n/a");console.log("\tfound scrape issue: email");}
+        if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
+
+        var tempArr = new Array (
+            data[i].title[0].toString(),
+            tempAdrstr,
+            data[i].jobsurl[0].toString(),
+            data[i].phone[0].toString(),
+            data[i].email[0].toString(),
+            "Scrapy did not search for this field/parameter.", // purpose slot
+            "Scrapy did not search for this field/parameter.", // hours slot
+            data[i].url[0].toString()
+        );
+
+        return tempArr;
+    }
+
+    var expressprosScrapyJSONdropdowns = function(data){
+
         var mytokens;
+        var cleanLocations;
         var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
 
         console.log("Filter Check:", myFilterVar);
@@ -217,59 +258,18 @@ $(document).ready(function(){
             case 'All':
                 for (var i = 0; i < data.length; i++){
 
-                    if (i >= 20){
-                        console.log("i >== 20", i);
-                        break;
-                    }
-                    console.log("input: ", data[i].title[0]);
+                    cleanLocations = scrapeErrorCatch(data); //error catch scraped inputs
 
-                    // error catch and clean for non string generated address values
-                    var tempAdrstr = "";
+                    locations.push(cleanLocations); //push an array into an array for my geocode array var locations
 
-                    for(var n=0; n<3; n+=1) {
-                        if ((typeof data[i].streetAddress[n] !== 'string') || (data[i].streetAddress[n].length === 0)) {
-                            data[i].streetAddress[n] =  " "; // this is for short address
-                        }
-                        tempAdrstr = tempAdrstr.replace( /  +/g, ' ');
-                        tempAdrstr = tempAdrstr.toString();
-                        tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
-                        console.log("\t-- error catch --", tempAdrstr, n);
-                    }
-                    console.log("\t\t-- error catch OUTPUT --", tempAdrstr);
+                    //mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
+                    mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
 
-                    if (typeof data[i].streetAddress[0] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[0].push(" "); console.log("\tfound scrape issue: addr0");}
-                    if (typeof data[i].streetAddress[1] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[1].push(" "); console.log("\tfound scrape issue: addr1");}
-                    if (typeof data[i].streetAddress[2] === undefined){data[i].streetAddress = [];data[i].streetAddress[2].push(" "); console.log("\tfound scrape issue: addr2");}
-                    tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
-                    tempAdrstr = tempAdrstr.toString();
-
-                    if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
-                    if (typeof data[i].phone[0] !== 'string'){data[i].phone = [];data[i].phone.push("n/a");console.log("\tfound scrape issue: phone");}
-                    if (typeof data[i].jobsurl[0] !== 'string'){data[i].jobsurl = [];data[i].jobsurl.push("n/a");console.log("\tfound scrape issue: jobsurl");}
-                    if (typeof data[i].email[0] !== 'string'){data[i].email = [];data[i].email.push("n/a");console.log("\tfound scrape issue: email");}
-                    if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
-
-                    var tempArr = new Array (
-                        data[i].title[0].toString(),
-                        tempAdrstr,
-                        data[i].jobsurl[0].toString(),
-                        data[i].phone[0].toString(),
-                        data[i].email[0].toString(),
-                        "Scrapy did not search for this field/parameter.", //purpose
-                        "Scrapy did not search for this field/parameter.", //hours
-                        data[i].url[0].toString()
-                    );
-
-                    locations.push(tempArr); //push an array into an array for my geocode array var locations
-
-                    mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
                     $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
                     $("#selectpoint1").selectpicker("refresh");
 
                     $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
                     $("#selectpoint2").selectpicker("refresh");
-
-
                 }
 
                 break;
@@ -278,29 +278,9 @@ $(document).ready(function(){
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
 
-                        // error catch and clean for non string generated address values
-                        var tempAdrstr = "";
-                        for(var n=0; n<2; n+=1){
-                            if (typeof data[i].streetAddress[n] !== 'string'){
-                                data[i].streetAddress[n] =  " "; // this is for short address
-                            }
-                            tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
-                        }
-                        tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
-                        tempAdrstr = tempAdrstr.toString();
+                        cleanLocations = scrapeErrorCatch(data);
 
-                        var tempArr = new Array (
-                            data[i].title[0].toString(),
-                            tempAdrstr,
-                            data[i].jobsurl[0].toString(),
-                            data[i].phone[0].toString(),
-                            data[i].email[0].toString(),
-                            "Scrapy did not search for this field/parameter.", //purpose
-                            "Scrapy did not search for this field/parameter.", //hours
-                            data[i].url[0].toString()
-                        );
-
-                        locations.push(tempArr); //push an array into an array for my geocode array var locations
+                        locations.push(cleanLocations); //push an array into an array for my geocode array var locations
 
                         mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
                         $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
