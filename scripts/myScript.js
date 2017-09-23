@@ -17,7 +17,12 @@ function initialize(){
     geocoder = new google.maps.Geocoder();
 
     for (i = 0; i < locations.length; i++){
-        geocodeAddress(locations, i);
+        // my free google api limit me to 20 points
+        if (i <= 20){
+            geocodeAddress(locations, i);
+        } else{
+            console.log("stoped loading input after <= 20", i);
+        }
     }
 }
 
@@ -212,16 +217,37 @@ $(document).ready(function(){
             case 'All':
                 for (var i = 0; i < data.length; i++){
 
+                    if (i >= 20){
+                        console.log("i >== 20", i);
+                        break;
+                    }
+                    console.log("input: ", data[i].title[0]);
+
                     // error catch and clean for non string generated address values
                     var tempAdrstr = "";
-                    for(var n=0; n<2; n+=1){
-                        if (typeof data[i].streetAddress[n] !== 'string'){
+
+                    for(var n=0; n<3; n+=1) {
+                        if ((typeof data[i].streetAddress[n] !== 'string') || (data[i].streetAddress[n].length === 0)) {
                             data[i].streetAddress[n] =  " "; // this is for short address
                         }
+                        tempAdrstr = tempAdrstr.replace( /  +/g, ' ');
+                        tempAdrstr = tempAdrstr.toString();
                         tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
+                        console.log("\t-- error catch --", tempAdrstr, n);
                     }
+                    console.log("\t\t-- error catch OUTPUT --", tempAdrstr);
+
+                    if (typeof data[i].streetAddress[0] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[0].push(" "); console.log("\tfound scrape issue: addr0");}
+                    if (typeof data[i].streetAddress[1] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[1].push(" "); console.log("\tfound scrape issue: addr1");}
+                    if (typeof data[i].streetAddress[2] === undefined){data[i].streetAddress = [];data[i].streetAddress[2].push(" "); console.log("\tfound scrape issue: addr2");}
                     tempAdrstr = tempAdrstr.replace( /  +/g, ' ' );
                     tempAdrstr = tempAdrstr.toString();
+
+                    if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
+                    if (typeof data[i].phone[0] !== 'string'){data[i].phone = [];data[i].phone.push("n/a");console.log("\tfound scrape issue: phone");}
+                    if (typeof data[i].jobsurl[0] !== 'string'){data[i].jobsurl = [];data[i].jobsurl.push("n/a");console.log("\tfound scrape issue: jobsurl");}
+                    if (typeof data[i].email[0] !== 'string'){data[i].email = [];data[i].email.push("n/a");console.log("\tfound scrape issue: email");}
+                    if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
 
                     var tempArr = new Array (
                         data[i].title[0].toString(),
@@ -243,7 +269,7 @@ $(document).ready(function(){
                     $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
                     $("#selectpoint2").selectpicker("refresh");
 
-                    console.log(data[i].title[0]);
+
                 }
 
                 break;
@@ -251,7 +277,7 @@ $(document).ready(function(){
             default:
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
-                        
+
                         // error catch and clean for non string generated address values
                         var tempAdrstr = "";
                         for(var n=0; n<2; n+=1){
