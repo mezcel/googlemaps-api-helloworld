@@ -25,7 +25,7 @@ class StackOverflowSpider(scrapy.Spider):
                 'url': result.css('a.job-link::attr(href)').extract_first(),
                 'company': result.css('div.-name::text').extract_first().strip(),
                 'location': result.css('div.-location::text').extract_first().replace('- \r\n', '').strip(),
-                'posted': result.css('p.-posted-date.g-col::text').extract_first().strip(),
+                'date': result.css('p.-posted-date.g-col::text').extract_first().strip(),
                 'skills': result.css('p > a.post-tag.job-link.no-tag-menu::text').extract()
             }
 
