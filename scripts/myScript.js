@@ -306,26 +306,20 @@ $(document).ready(function(){
     $('#jsonFileUpload').change( function(event) {
 
         var tmppath = URL.createObjectURL(event.target.files[0]); //temporary file location for path uploading
-        console.log(tmppath);
 
         $.getJSON(tmppath, function(data) {
             console.log("doing the json");
-            /*
             if (data && data.length > 0){
                 console.log("object debug: ", data); //general obj debug
                 expressprosScrapyJSONdropdowns(data);
                 alert('Imported - ' + data.length + ' - of 20 possible waypoints successfully!\n\nLong Addresses May Not Work Well, But They Will Be Available In Dropdown.');
-
                 initialize(); //populate map with points
-
                 location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
-
             }
             else{
                 alert('Issues with the json format or the file itself!');
                 return;
             }
-            */
         });
 
     });
