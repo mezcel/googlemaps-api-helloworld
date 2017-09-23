@@ -17,12 +17,8 @@ function initialize(){
     geocoder = new google.maps.Geocoder();
 
     for (i = 0; i < locations.length; i++){
-        // my free google api limit me to 20 points
-        if (i <= 20){
-            geocodeAddress(locations, i);
-        } else{
-            console.log("stoped loading input after <= 20", i);
-        }
+        // my free google api Key limit is 20 points
+        geocodeAddress(locations, i);
     }
 }
 
@@ -191,7 +187,7 @@ $(document).ready(function(){
     // The event listener for the file upload (JSON)
     // i took a different approach compared to my CSV input
 
-    var scrapeErrorCatch(data) {
+    var scrapeErrorCatch = function(data, i){
 
         /*
             this is for the json, but i want to have it resemble the csv and the [var locations] used in path: scripts/myjquerycsv.js
@@ -213,7 +209,7 @@ $(document).ready(function(){
         var tempAdrstr = "";
 
         for(var n=0; n<3; n+=1) {
-            if ((typeof data[i].streetAddress[n] !== 'string') || (data[i].streetAddress[n].length === 0)) {
+            if ( (typeof data[i].streetAddress[n] !== 'string') || (data[i].streetAddress[n].length === 0) ) {
                 data[i].streetAddress[n] =  " "; // this is for short address
             }
             tempAdrstr = tempAdrstr.replace( /  +/g, ' ');
@@ -253,23 +249,30 @@ $(document).ready(function(){
 
         console.log("Filter Check:", myFilterVar);
         console.log("# of WPTs: ", data.length);
+        locations =[]; //reset clear locations
         // use this if i want to see the length of the object within array: Object.keys(data[0]).length
         switch(myFilterVar) {
             case 'All':
                 for (var i = 0; i < data.length; i++){
 
-                    cleanLocations = scrapeErrorCatch(data); //error catch scraped inputs
+                    if (i <= 20) {
+                        cleanLocations = scrapeErrorCatch(data, i);// error catch
 
-                    locations.push(cleanLocations); //push an array into an array for my geocode array var locations
+                        // limit all my point to 20 wpts
+                        locations.push(cleanLocations); //push an array into an array for my geocode array var locations
+                        //mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
+                        mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
 
-                    //mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
-                    mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
+                        $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                        $("#selectpoint1").selectpicker("refresh");
 
-                    $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
-                    $("#selectpoint1").selectpicker("refresh");
+                        $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                        $("#selectpoint2").selectpicker("refresh");
 
-                    $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
-                    $("#selectpoint2").selectpicker("refresh");
+                    } else {
+                        return;
+                    }
+
                 }
 
                 break;
@@ -278,7 +281,11 @@ $(document).ready(function(){
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
 
-                        cleanLocations = scrapeErrorCatch(data);
+                        if (i <= 20) {
+                            // error catch
+                            // limit all my point to 20 wpts
+                            cleanLocations = scrapeErrorCatch(data, i);
+                        }
 
                         locations.push(cleanLocations); //push an array into an array for my geocode array var locations
 
@@ -302,8 +309,10 @@ $(document).ready(function(){
             if (data && data.length > 0){
                 console.log("object debug: ", data); //general obj debug
                 expressprosScrapyJSONdropdowns(data);
+                alert('Imported - ' + data.length + ' - of 20 possible waypoints successfully!\n\nLong Addresses May Not Work Well, But They Will Be Available In Dropdown.');
+
                 initialize(); //populate map with points
-                alert('Imported - ' + data.length + ' - waypoints successfully!');
+
                 location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
             }
             else{
