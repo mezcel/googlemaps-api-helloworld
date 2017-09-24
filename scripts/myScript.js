@@ -209,33 +209,39 @@ $(document).ready(function(){
         var tempAdrstr = "";
 
         for(var n=0; n<3; n+=1) {
-            if ( (typeof data[i].streetAddress[n] !== 'string') || (data[i].streetAddress[n].length === 0) ) {
-                data[i].streetAddress[n] =  " "; // this is for short address
+            if ( (typeof data[i].officeAddress[n] !== 'string') || (data[i].officeAddress[n].length === 0) ) {
+                data[i].officeAddress[n] =  " "; // this is for short address
             }
             tempAdrstr = tempAdrstr.replace( /  +/g, ' ');
             tempAdrstr = tempAdrstr.toString();
-            tempAdrstr = tempAdrstr + " " + data[i].streetAddress[n];
+            tempAdrstr = tempAdrstr + " " + data[i].officeAddress[n];
         }
 
-        if (typeof data[i].streetAddress[0] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[0].push(" "); console.log("\tfound scrape issue: addr0");}
-        if (typeof data[i].streetAddress[1] !== 'string'){data[i].streetAddress = [];data[i].streetAddress[1].push(" "); console.log("\tfound scrape issue: addr1");}
-        if ((typeof data[i].streetAddress[2] !== 'string')||(typeof data[i].streetAddress[2] === undefined)){data[i].streetAddress = [];data[i].streetAddress[2].push(" "); console.log("\tfound scrape issue: addr2");}
+        /*
+            if(typeof Obj.property == "undefined"){
+                // Assign value to the property here
+                Obj.property = someValue;
+            }
+        */
 
-        if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
-        if (typeof data[i].phone[0] !== 'string'){data[i].phone = [];data[i].phone.push("n/a");console.log("\tfound scrape issue: phone");}
-        if (typeof data[i].jobsurl[0] !== 'string'){data[i].jobsurl = [];data[i].jobsurl.push("n/a");console.log("\tfound scrape issue: jobsurl");}
-        if (typeof data[i].email[0] !== 'string'){data[i].email = [];data[i].email.push("n/a");console.log("\tfound scrape issue: email");}
-        if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
+        if (typeof data[i].officeAddress[0] !== 'string'){data[i].officeAddress = [];data[i].officeAddress[0].push(" "); console.log("\tfound scrape issue: officeAddress[0]");}
+        if (typeof data[i].officeAddress[1] !== 'string'){data[i].officeAddress = [];data[i].officeAddress[1].push(" "); console.log("\tfound scrape issue: officeAddress[1]");}
+        if ((typeof data[i].officeAddress[2] !== 'string')||(typeof data[i].officeAddress[2] === undefined)){data[i].officeAddress = [];data[i].officeAddress[2].push(" "); console.log("\tfound scrape issue: officeAddress[2]");}
+
+        if (typeof data[i].officeCity[0] !== 'string'){data[i].officeCity = [];data[i].officeCity.push("n/a"); console.log("\tfound scrape issue: title/officeCity");}
+        if (typeof data[i].officePhone[0] !== 'string'){data[i].officePhone = [];data[i].officePhone.push("n/a");console.log("\tfound scrape issue: officePhone");}
+        if (typeof data[i].officeWeb[0] !== 'string'){data[i].officeWeb = [];data[i].officeWeb.push("n/a");console.log("\tfound scrape issue: officeWeb");}
+        if (typeof data[i].officeEmail[0] !== 'string'){data[i].officeEmail = [];data[i].officeEmail.push("n/a");console.log("\tfound scrape issue: officeEmail");}
 
         var tempArr = new Array (
-            data[i].title[0].toString(),
+            data[i].officeCity[0].toString(),
             tempAdrstr,
-            data[i].jobsurl[0].toString(),
-            data[i].phone[0].toString(),
-            data[i].email[0].toString(),
+            data[i].officeWeb[0].toString(),
+            data[i].officePhone[0].toString(),
+            data[i].officeEmail[0].toString(),
             "Scrapy did not search for this field/parameter.", // purpose slot
             "Scrapy did not search for this field/parameter.", // hours slot
-            data[i].url[0].toString()
+            "Scrapy did not search for this field/parameter.", // job list bulliten url or "url"
         );
 
         return tempArr;
@@ -255,24 +261,21 @@ $(document).ready(function(){
             case 'All':
                 for (var i = 0; i < data.length; i++){
 
+                    // limit all my point to 20 wpts
                     if (i <= 20) {
                         cleanLocations = scrapeErrorCatch(data, i);// error catch
-
-                        // limit all my point to 20 wpts
                         locations.push(cleanLocations); //push an array into an array for my geocode array var locations
-                        //mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
                         mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
 
-                        $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                        $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
                         $("#selectpoint1").selectpicker("refresh");
 
-                        $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
+                        $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
                         $("#selectpoint2").selectpicker("refresh");
 
                     } else {
                         return;
                     }
-
                 }
 
                 break;
@@ -280,27 +283,41 @@ $(document).ready(function(){
             default:
                 for (var i = 0; i < data.length; i++){
                     if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
-
+                        // limit all my point to 20 wpts
                         if (i <= 20) {
-                            // error catch
-                            // limit all my point to 20 wpts
-                            cleanLocations = scrapeErrorCatch(data, i);
+                            cleanLocations = scrapeErrorCatch(data, i);// error catch
+                            locations.push(cleanLocations); //push an array into an array for my geocode
+                            mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
+
+                            $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                            $("#selectpoint1").selectpicker("refresh");
+
+                            $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                            $("#selectpoint2").selectpicker("refresh");
+
+                        } else {
+                            return;
                         }
-
-                        locations.push(cleanLocations); //push an array into an array for my geocode array var locations
-
-                        mytokens = data[i].title[0] + " " + data[i].streetAddress[0] + " " + locations[i][1] + " " + data[i].phone[0] + " " + data[i].jobsurl[0] + " " + data[i].email[0] + " " + data[i].url[0];
-                        $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
-                        $("#selectpoint1").selectpicker("refresh");
-
-                        $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+data[i].title[0]+'">'+locations[i][1] +'</option>');
-                        $("#selectpoint2").selectpicker("refresh");
-
-                        console.log(data[i].title[0]);
                     }
                 }
+
                 break;
         }
+    }
+
+    var makeJSONdatacompatable = function(originalData){
+        /*
+            i made a better scrapper for a different app
+            this app can now read in those files
+        */
+        var newData = [];
+
+        for(var i=0; i<originalData.length; i+=1){
+            if(originalData[i].hasOwnProperty('officeAddress')){
+                newData.push(originalData[i]);
+            }
+        }
+        return newData;
     }
 
     $('#jsonFileUpload').change( function(event) {
@@ -310,11 +327,13 @@ $(document).ready(function(){
         $.getJSON(tmppath, function(data) {
             console.log("doing the json");
             if (data && data.length > 0){
-                console.log("object debug: ", data); //general obj debug
+                console.log("full json object debug: ", data); //general obj debug
+                data = makeJSONdatacompatable(data);
+                console.log("partial json object debug:", data);
                 expressprosScrapyJSONdropdowns(data);
                 alert('Imported - ' + data.length + ' - of 20 possible waypoints successfully!\n\nLong Addresses May Not Work Well, But They Will Be Available In Dropdown.');
                 initialize(); //populate map with points
-                location.href='#parallaxnav'; //jumps to where id=#parallaxnav is on the html
+                location.href = '#parallaxnav'; //jumps to where id=#parallaxnav is on the html
             }
             else{
                 alert('Issues with the json format or the file itself!');
