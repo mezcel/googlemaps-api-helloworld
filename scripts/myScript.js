@@ -312,12 +312,22 @@ $(document).ready(function(){
         */
         var newData = [];
 
-        for(var i=0; i<originalData.length; i+=1){
-            if(originalData[i].hasOwnProperty('officeAddress')){
+        if(originalData[i].hasOwnProperty('officeAddress')){
+            // expresspros
+            for(var i=0; i<originalData.length; i+=1){
                 newData.push(originalData[i]);
             }
+            expressprosScrapyJSONdropdowns(newData);
+        } else if (originalData[i].hasOwnProperty('skills')) {
+            //stackoverflow
+            for(var i=0; i<originalData.length; i+=1){
+                newData.push(originalData[i]);
+            }
+
         }
+
         return newData;
+
     }
 
     $('#jsonFileUpload').change( function(event) {
@@ -330,7 +340,7 @@ $(document).ready(function(){
                 console.log("full json object debug: ", data); //general obj debug
                 data = makeJSONdatacompatable(data);
                 console.log("partial json object debug:", data);
-                expressprosScrapyJSONdropdowns(data);
+                //expressprosScrapyJSONdropdowns(data);
                 alert('Imported - ' + data.length + ' - of 20 possible waypoints successfully!\n\nLong Addresses May Not Work Well, But They Will Be Available In Dropdown.');
                 initialize(); //populate map with points
                 location.href = '#parallaxnav'; //jumps to where id=#parallaxnav is on the html
