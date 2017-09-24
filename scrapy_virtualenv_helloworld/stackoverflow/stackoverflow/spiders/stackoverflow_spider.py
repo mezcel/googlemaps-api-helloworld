@@ -5,13 +5,15 @@ import scrapy
 class StackOverflowSpider(scrapy.Spider):
     name = 'stackoverflow'
     allowed_domain = ["https://stackoverflow.com/"]
-    start_urls = [
-        'https://stackoverflow.com/jobs?sort=p&l=Florida',
-        'https://stackoverflow.com/jobs?sort=p&l=Georgia'
-    ]
+    # start_urls = [ 'https://stackoverflow.com/jobs?sort=p&l=Florida', 'https://stackoverflow.com/jobs?sort=p&l=Georgia', 'https://stackoverflow.com/jobs?sort=p&l=Alabama' ]
     # https://stackoverflow.com/jobs?sort=p&l=Florida
     # &ms=Junior&mxs=MidLevel
     # https://stackoverflow.com/jobs?sort=p&l=Florida&d=20&u=Miles&c=usd&mxs=MidLevel&j=permanent&j=contract&j=internship&b=HighResponse
+
+    # scrapy crawl stackoverflow -a domain='https://stackoverflow.com/jobs?sort=p&l=Alabama' -o ../../demo-csv-json-scrape/stackoverflow_Alabama_Demo.json -t json
+    def __init__(self, domain='', *args,**kwargs):
+        super(StackOverflowSpider, self).__init__(*args, **kwargs)
+        self.start_urls = [domain]
 
     '''
         Copy Outer html from the inspect feature to see the class attr
@@ -34,7 +36,6 @@ class StackOverflowSpider(scrapy.Spider):
             i fealt it relevant to scrap just those 3 following links
         '''
         next_page = response.css('div.pagination > a.job-link::attr(href)').extract()
-        page_i_want = 'https://stackoverflow.com/jobs?sort=p&l=Florida&pg=2'
         mycounter = 1
         if next_page[mycounter + 1]:
             mycounter = mycounter + 1

@@ -247,6 +247,31 @@ $(document).ready(function(){
         return tempArr;
     }
 
+    var scrapeErrorCatch2 = function(data, i){
+/*
+        if (typeof data[i].location[0] !== 'string'){data[i].location = [];data[i].location.push(" "); console.log("\tfound scrape issue: location");}
+
+        if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
+        if (typeof data[i].company[0] !== 'string'){data[i].company = [];data[i].company.push("n/a");console.log("\tfound scrape issue: company");}
+        if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
+        if (typeof data[i].skills[0] !== 'string'){data[i].skills = [];data[i].skills.push("n/a");console.log("\tfound scrape issue: skills");}
+*/
+        var addrstring = data[i].company.toString() + ", " + data[i].location.toString();
+        var tempArr = new Array (
+            data[i].title.toString(),
+            addrstring,
+            data[i].url.toString(),
+            "Scrapy did not search for this field/parameter.", //phone
+            "Scrapy did not search for this field/parameter.", //email
+            data[i].skills.toString(), // purpose slot
+            "Scrapy did not search for this field/parameter.", // hours slot
+            "Scrapy did not search for this field/parameter.", // job list bulliten url or "url"
+        );
+
+        //console.log(tempArr);
+        return tempArr;
+    }
+
     var expressprosScrapyJSONdropdowns = function(data){
 
         var mytokens;
@@ -305,6 +330,64 @@ $(document).ready(function(){
         }
     }
 
+    var stackoverflowScrapyJSONdropdowns = function(data){
+        var mytokens;
+        var cleanLocations;
+        var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
+
+        console.log("Filter Check:", myFilterVar);
+        console.log("# of WPTs: ", data.length);
+        locations =[]; //reset clear locations
+        // use this if i want to see the length of the object within array: Object.keys(data[0]).length
+        switch(myFilterVar) {
+            case 'All':
+                for (var i = 0; i < data.length; i++){
+
+                    // limit all my point to 20 wpts
+                    if (i <= 20) {
+                        cleanLocations = scrapeErrorCatch2(data, i);// error catch
+                        locations.push(cleanLocations); //push an array into an array for my geocode array var locations
+                        mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
+
+                        $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                        $("#selectpoint1").selectpicker("refresh");
+
+                        $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                        $("#selectpoint2").selectpicker("refresh");
+
+                    } else {
+                        return;
+                    }
+                }
+
+                break;
+
+            default:
+                for (var i = 0; i < data.length; i++){
+                    if (data[i].streetAddress[2].indexOf(myFilterVar) != -1) {
+                        // limit all my point to 20 wpts
+                        if (i <= 20) {
+                            cleanLocations = scrapeErrorCatch(data, i);// error catch
+                            locations.push(cleanLocations); //push an array into an array for my geocode
+                            mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
+
+                            $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                            $("#selectpoint1").selectpicker("refresh");
+
+                            $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                            $("#selectpoint2").selectpicker("refresh");
+
+                        } else {
+                            return;
+                        }
+                    }
+                }
+
+                break;
+        }
+
+    }
+
     var makeJSONdatacompatable = function(originalData){
         /*
             i made a better scrapper for a different app
@@ -312,20 +395,21 @@ $(document).ready(function(){
         */
         var newData = [];
 
-        if(originalData[i].hasOwnProperty('officeAddress')){
+        if(originalData[0].hasOwnProperty('officeAddress')){
             // expresspros
             for(var i=0; i<originalData.length; i+=1){
                 newData.push(originalData[i]);
             }
             expressprosScrapyJSONdropdowns(newData);
-        } else if (originalData[i].hasOwnProperty('skills')) {
+        } else if (originalData[0].hasOwnProperty('skills')) {
             //stackoverflow
             for(var i=0; i<originalData.length; i+=1){
                 newData.push(originalData[i]);
             }
-
+            stackoverflowScrapyJSONdropdowns(newData);
         }
 
+        // extra output for debug
         return newData;
 
     }
