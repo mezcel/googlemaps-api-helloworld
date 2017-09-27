@@ -208,37 +208,12 @@ $(document).ready(function(){
 
         var tempAdrstr = "";
 
-        for(var n=0; n<3; n+=1) {
-            if ( (typeof data[i].officeAddress[n] !== 'string') || (data[i].officeAddress[n].length === 0) ) {
-                data[i].officeAddress[n] =  " "; // this is for short address
-            }
-            tempAdrstr = tempAdrstr.replace( /  +/g, ' ');
-            tempAdrstr = tempAdrstr.toString();
-            tempAdrstr = tempAdrstr + " " + data[i].officeAddress[n];
-        }
-
-        /*
-            if(typeof Obj.property == "undefined"){
-                // Assign value to the property here
-                Obj.property = someValue;
-            }
-        */
-
-        if (typeof data[i].officeAddress[0] !== 'string'){data[i].officeAddress = [];data[i].officeAddress[0].push(" "); console.log("\tfound scrape issue: officeAddress[0]");}
-        if (typeof data[i].officeAddress[1] !== 'string'){data[i].officeAddress = [];data[i].officeAddress[1].push(" "); console.log("\tfound scrape issue: officeAddress[1]");}
-        if ((typeof data[i].officeAddress[2] !== 'string')||(typeof data[i].officeAddress[2] === undefined)){data[i].officeAddress = [];data[i].officeAddress[2].push(" "); console.log("\tfound scrape issue: officeAddress[2]");}
-
-        if (typeof data[i].officeCity[0] !== 'string'){data[i].officeCity = [];data[i].officeCity.push("n/a"); console.log("\tfound scrape issue: title/officeCity");}
-        if (typeof data[i].officePhone[0] !== 'string'){data[i].officePhone = [];data[i].officePhone.push("n/a");console.log("\tfound scrape issue: officePhone");}
-        if (typeof data[i].officeWeb[0] !== 'string'){data[i].officeWeb = [];data[i].officeWeb.push("n/a");console.log("\tfound scrape issue: officeWeb");}
-        if (typeof data[i].officeEmail[0] !== 'string'){data[i].officeEmail = [];data[i].officeEmail.push("n/a");console.log("\tfound scrape issue: officeEmail");}
-
         var tempArr = new Array (
-            data[i].officeCity[0].toString(),
-            tempAdrstr,
-            data[i].officeWeb[0].toString(),
-            data[i].officePhone[0].toString(),
-            data[i].officeEmail[0].toString(),
+            data[i].officeCity,
+            data[i].officeAddress,
+            data[i].officeWeb,
+            data[i].officePhone,
+            data[i].officeEmail,
             "Scrapy did not search for this field/parameter.", // purpose slot
             "Scrapy did not search for this field/parameter.", // hours slot
             "Scrapy did not search for this field/parameter.", // job list bulliten url or "url"
@@ -248,27 +223,44 @@ $(document).ready(function(){
     }
 
     var scrapeErrorCatch2 = function(data, i){
-/*
-        if (typeof data[i].location[0] !== 'string'){data[i].location = [];data[i].location.push(" "); console.log("\tfound scrape issue: location");}
+        /*
+                if (typeof data[i].location[0] !== 'string'){data[i].location = [];data[i].location.push(" "); console.log("\tfound scrape issue: location");}
 
-        if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
-        if (typeof data[i].company[0] !== 'string'){data[i].company = [];data[i].company.push("n/a");console.log("\tfound scrape issue: company");}
-        if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
-        if (typeof data[i].skills[0] !== 'string'){data[i].skills = [];data[i].skills.push("n/a");console.log("\tfound scrape issue: skills");}
-*/
-        var addrstring = data[i].company.toString() + ", " + data[i].location.toString();
+                if (typeof data[i].title[0] !== 'string'){data[i].title = [];data[i].title.push("n/a"); console.log("\tfound scrape issue: title");}
+                if (typeof data[i].company[0] !== 'string'){data[i].company = [];data[i].company.push("n/a");console.log("\tfound scrape issue: company");}
+                if (typeof data[i].url[0] !== 'string'){data[i].url = [];data[i].url.push("n/a");console.log("\tfound scrape issue: url");}
+                if (typeof data[i].skills[0] !== 'string'){data[i].skills = [];data[i].skills.push("n/a");console.log("\tfound scrape issue: skills");}
+        */
+        var addrstring = data[i].company + ", " + data[i].location;
         var tempArr = new Array (
-            data[i].title.toString(),
+            data[i].title,
             addrstring,
-            data[i].url.toString(),
+            data[i].url,
             "Scrapy did not search for this field/parameter.", //phone
             "Scrapy did not search for this field/parameter.", //email
-            data[i].skills.toString(), // purpose slot
-            "Scrapy did not search for this field/parameter.", // hours slot
-            "Scrapy did not search for this field/parameter.", // job list bulliten url or "url"
+            data[i].skills, // purpose slot
+            data[i].date, // hours slot
+            data[i].job, // job list bulliten url or "url"
         );
 
         //console.log(tempArr);
+        return tempArr;
+    }
+
+    var scrapeErrorCatch3 = function(data, i){
+        var tempAdrstr = "";
+
+        var tempArr = new Array (
+            data[i].title,
+            data[i].address,
+            data[i].url,
+            "Scrapy did not search for this field/parameter.", // data[i].officePhone,
+            "Scrapy did not search for this field/parameter.", //data[i].officeEmail,
+            data[i].participants, // purpose slot
+            data[i].date, // hours slot
+            "Scrapy did not search for this field/parameter.", // job list bulliten url or "url"
+        );
+
         return tempArr;
     }
 
@@ -388,6 +380,36 @@ $(document).ready(function(){
 
     }
 
+    var targetedjobfairsScrapyJSONdropdowns = function(data){
+        var mytokens;
+        var cleanLocations;
+        var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
+
+        console.log("Filter Check:", myFilterVar);
+        console.log("# of WPTs: ", data.length);
+        locations =[]; //reset clear locations
+
+        for (var i = 0; i < data.length; i++){
+
+            // limit all my point to 20 wpts
+            if (i <= 20) {
+                cleanLocations = scrapeErrorCatch3(data, i);// error catch
+                locations.push(cleanLocations); //push an array into an array for my geocode array var locations
+                mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
+
+                $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                $("#selectpoint1").selectpicker("refresh");
+
+                $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                $("#selectpoint2").selectpicker("refresh");
+
+            } else {
+                return;
+            }
+        }
+
+    }
+
     var makeJSONdatacompatable = function(originalData){
         /*
             i made a better scrapper for a different app
@@ -407,6 +429,12 @@ $(document).ready(function(){
                 newData.push(originalData[i]);
             }
             stackoverflowScrapyJSONdropdowns(newData);
+        } else if (originalData[0].hasOwnProperty('participants')) {
+            //stackoverflow
+            for(var i=0; i<originalData.length; i+=1){
+                newData.push(originalData[i]);
+            }
+            targetedjobfairsScrapyJSONdropdowns(newData);
         }
 
         // extra output for debug
