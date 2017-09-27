@@ -16,6 +16,4 @@ class ExpressprosItem(scrapy.Item):
     officePhone = scrapy.Field()
     officeWeb = scrapy.Field()
     officeEmail = scrapy.Field()
-    joboffersWeb = scrapy.Field()
-
     pass
