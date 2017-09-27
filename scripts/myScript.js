@@ -216,7 +216,7 @@ $(document).ready(function(){
             data[i].officeEmail,
             "Scrapy did not search for this field/parameter.", // purpose slot
             "Scrapy did not search for this field/parameter.", // hours slot
-            "Scrapy did not search for this field/parameter.", // job list bulliten url or "url"
+            data[i].url, // job list bulliten url or "url"
         );
 
         return tempArr;

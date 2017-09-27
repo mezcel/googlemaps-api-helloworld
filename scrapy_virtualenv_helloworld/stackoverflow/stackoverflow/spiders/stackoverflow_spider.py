@@ -6,19 +6,11 @@ class StackOverflowSpider(scrapy.Spider):
     name = 'stackoverflow'
     allowed_domain = ["https://stackoverflow.com/"]
     # start_urls = [ 'https://stackoverflow.com/jobs?sort=p&l=Florida', 'https://stackoverflow.com/jobs?sort=p&l=Georgia', 'https://stackoverflow.com/jobs?sort=p&l=Alabama' ]
-    # https://stackoverflow.com/jobs?sort=p&l=Florida
-    # &ms=Junior&mxs=MidLevel
-    # https://stackoverflow.com/jobs?sort=p&l=Florida&d=20&u=Miles&c=usd&mxs=MidLevel&j=permanent&j=contract&j=internship&b=HighResponse
 
-    # scrapy crawl stackoverflow -a domain='https://stackoverflow.com/jobs?sort=p&l=Alabama' -o ../../demo-csv-json-scrape/stackoverflow_Alabama_Demo.json -t json
     def __init__(self, domain='', *args,**kwargs):
         super(StackOverflowSpider, self).__init__(*args, **kwargs)
         self.start_urls = [domain]
 
-    '''
-        Copy Outer html from the inspect feature to see the class attr
-        Example: <a class="post-tag job-link no-tag-menu" href="/jobs/developer-jobs-using-java">java</a>
-    '''
     def parse(self, response):
         for result in response.css('div.main div.-job-summary'):
             yield {
