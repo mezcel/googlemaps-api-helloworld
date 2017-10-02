@@ -276,8 +276,9 @@ $(document).ready(function(){
             data[i].phone,
             data[i].email,
             data[i].purpose,
-            "Scrapy did not search for this field/parameter.", //data[i].date, // hours slot
-            data[i].about // job list bulliten url or "url"
+            data[i].hours, // hours slot
+            data[i].about,
+            data[i].id
         );
 
         return tempArr;
