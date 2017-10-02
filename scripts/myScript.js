@@ -264,6 +264,25 @@ $(document).ready(function(){
         return tempArr;
     }
 
+    var scrapeErrorCatch4 = function(data, i){
+        /* title,address,url,phone,email,purpose,hours,about,id */
+
+        var tempAdrstr = "";
+
+        var tempArr = new Array (
+            data[i].title,
+            data[i].address,
+            data[i].url,
+            data[i].phone,
+            data[i].email,
+            data[i].purpose,
+            "Scrapy did not search for this field/parameter.", //data[i].date, // hours slot
+            data[i].about // job list bulliten url or "url"
+        );
+
+        return tempArr;
+    }
+
     var expressprosScrapyJSONdropdowns = function(data){
 
         var mytokens;
@@ -410,6 +429,36 @@ $(document).ready(function(){
 
     }
 
+    var angularwptmakerJSONdropdowns = function(data){
+        var mytokens;
+        var cleanLocations;
+        var myFilterVar = $("#wptfilterform input[type='radio']:checked").val();
+
+        console.log("Filter Check:", myFilterVar);
+        console.log("# of WPTs: ", data.length);
+        locations =[]; //reset clear locations
+
+        for (var i = 0; i < data.length; i++){
+
+            // limit all my point to 20 wpts
+            if (i <= 20) {
+                cleanLocations = scrapeErrorCatch4(data, i);// error catch
+                locations.push(cleanLocations); //push an array into an array for my geocode array var locations
+                mytokens = locations[i][0] + " " + locations[i][1] + " " + locations[i][2] + " " + locations[i][3] + " " +locations[i][4] + " " + locations[i][7];
+
+                $('#selectpoint1').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                $("#selectpoint1").selectpicker("refresh");
+
+                $('#selectpoint2').append('<option data-tokens="'+mytokens+'" data-subtext="'+locations[i][0]+'">'+locations[i][1] +'</option>');
+                $("#selectpoint2").selectpicker("refresh");
+
+            } else {
+                return;
+            }
+        }
+
+    }
+
     var makeJSONdatacompatable = function(originalData){
         /*
             i made a better scrapper for a different app
@@ -435,6 +484,12 @@ $(document).ready(function(){
                 newData.push(originalData[i]);
             }
             targetedjobfairsScrapyJSONdropdowns(newData);
+        } else if (originalData[0].hasOwnProperty('id')) {
+            //stackoverflow
+            for(var i=0; i<originalData.length; i+=1){
+                newData.push(originalData[i]);
+            }
+            angularwptmakerJSONdropdowns(newData);
         }
 
         // extra output for debug
